@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>蔡子健 / Chase Cai - Personal Homepage</title>
+    <title>蔡子健 / Zijian Cai - Personal Homepage</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -129,6 +129,12 @@
             color: #222;
         }
 
+        .profile-title {
+            color: #0066cc;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+
         .profile-bio {
             color: #666;
             margin-bottom: 20px;
@@ -204,6 +210,14 @@
             margin-bottom: 15px;
         }
 
+        .highlight-box {
+            background: #f8f9fa;
+            border-left: 4px solid #0066cc;
+            padding: 15px 20px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
         /* News Timeline */
         .news-list {
             list-style: none;
@@ -234,6 +248,21 @@
             margin-right: 10px;
         }
 
+        .news-tag {
+            display: inline-block;
+            background: #28a745;
+            color: #fff;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.8em;
+            margin-left: 8px;
+        }
+
+        .news-tag.award {
+            background: #ffc107;
+            color: #333;
+        }
+
         /* Publications */
         .publication-item {
             padding: 20px 0;
@@ -248,6 +277,16 @@
             font-weight: 700;
             color: #0066cc;
             margin-bottom: 5px;
+        }
+
+        .publication-venue .accepted {
+            color: #28a745;
+            font-size: 0.85em;
+        }
+
+        .publication-venue .submitted {
+            color: #ffc107;
+            font-size: 0.85em;
         }
 
         .publication-title {
@@ -270,6 +309,19 @@
             font-size: 0.95em;
         }
 
+        .publication-authors strong {
+            color: #333;
+        }
+
+        .publication-note {
+            margin-top: 10px;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 6px;
+            font-size: 0.9em;
+            color: #555;
+        }
+
         /* Education & Experience */
         .timeline-item {
             display: flex;
@@ -283,7 +335,7 @@
         }
 
         .timeline-date {
-            min-width: 140px;
+            min-width: 150px;
             font-weight: 600;
             color: #0066cc;
         }
@@ -293,8 +345,26 @@
             margin-bottom: 5px;
         }
 
-        .timeline-content p {
+        .timeline-content .degree {
+            color: #0066cc;
+            font-weight: 500;
+        }
+
+        .timeline-content .dept {
             color: #666;
+        }
+
+        .timeline-content .highlights {
+            margin-top: 10px;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 6px;
+            font-size: 0.9em;
+        }
+
+        .timeline-content .highlights li {
+            margin: 5px 0;
+            color: #555;
         }
 
         /* Honors */
@@ -308,6 +378,42 @@
         .honor-date {
             min-width: 80px;
             font-weight: 600;
+            color: #0066cc;
+        }
+
+        .honor-level {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.8em;
+            margin-left: 8px;
+        }
+
+        .honor-level.national {
+            background: #dc3545;
+            color: #fff;
+        }
+
+        .honor-level.international {
+            background: #6f42c1;
+            color: #fff;
+        }
+
+        /* Skills */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .skill-item {
+            background: #f8f9fa;
+            padding: 12px 15px;
+            border-radius: 8px;
+            border-left: 3px solid #0066cc;
+        }
+
+        .skill-item strong {
             color: #0066cc;
         }
 
@@ -326,13 +432,15 @@
 
         body.lang-en .nav-menu span[data-lang="zh"],
         body.lang-en .profile-name span[data-lang="zh"],
-        body.lang-en .profile-bio span[data-lang="zh"] {
+        body.lang-en .profile-bio span[data-lang="zh"],
+        body.lang-en .profile-title span[data-lang="zh"] {
             display: none;
         }
 
         body.lang-en .nav-menu span[data-lang="en"],
         body.lang-en .profile-name span[data-lang="en"],
-        body.lang-en .profile-bio span[data-lang="en"] {
+        body.lang-en .profile-bio span[data-lang="en"],
+        body.lang-en .profile-title span[data-lang="en"] {
             display: inline;
         }
 
@@ -369,6 +477,11 @@
 
             .nav-menu li {
                 padding: 10px 15px;
+            }
+
+            .timeline-item {
+                flex-direction: column;
+                gap: 5px;
             }
         }
     </style>
@@ -435,29 +548,32 @@
         <!-- Sidebar -->
         <aside class="sidebar">
             <div class="profile-box">
-                <img src="images/avatar.jpg" alt="Avatar" class="avatar" onerror="this.src='https://via.placeholder.com/180x180/4a90e2/ffffff?text=Chase'">
+                <img src="images/avatar.jpg" alt="Zijian Cai" class="avatar" onerror="this.src='https://via.placeholder.com/180x180/4a90e2/ffffff?text=ZC'">
                 <h2 class="profile-name">
                     <span data-lang="zh">蔡子健</span>
-                    <span data-lang="en">Chase Cai</span>
+                    <span data-lang="en">Zijian Cai</span>
                 </h2>
+                <p class="profile-title">
+                    <span data-lang="zh">中国科学技术大学 · 硕士研究生</span>
+                    <span data-lang="en">USTC · Master's Student</span>
+                </p>
                 <p class="profile-bio">
-                    <span data-lang="zh">热爱学习，追求进步</span>
-                    <span data-lang="en">Passionate about learning and growth</span>
+                    <span data-lang="zh">具身智能 · 3D感知 · 深度学习</span>
+                    <span data-lang="en">Embodied AI · 3D Perception · Deep Learning</span>
                 </p>
                 <ul class="profile-info">
                     <li>
-                        <i class="fas fa-quote-left"></i>
-                        <span data-lang="zh">每一天都是新的开始</span>
-                        <span data-lang="en">Every day is a new beginning</span>
-                    </li>
-                    <li>
                         <i class="fas fa-map-marker-alt"></i>
-                        <span data-lang="zh">中国</span>
-                        <span data-lang="en">China</span>
+                        <span data-lang="zh">安徽合肥</span>
+                        <span data-lang="en">Hefei, China</span>
                     </li>
                     <li>
                         <i class="fas fa-envelope"></i>
-                        <a href="mailto:your-email@example.com">Email</a>
+                        <a href="mailto:zjcai@mail.ustc.edu.cn">zjcai@mail.ustc.edu.cn</a>
+                    </li>
+                    <li>
+                        <i class="fas fa-phone"></i>
+                        <a href="tel:19862855610">19862855610</a>
                     </li>
                     <li>
                         <i class="fab fa-github"></i>
@@ -478,16 +594,20 @@
                 </h2>
                 <div class="about-text">
                     <p data-lang="zh">
-                        你好！我是蔡子健，正在学习如何使用 OpenClaw。我对技术充满热情，喜欢探索新事物。
+                        你好！我是蔡子健，目前是中国科学技术大学自动化系的硕士研究生，研究方向主要聚焦于<strong>具身智能</strong>、<strong>3D感知</strong>和<strong>深度学习</strong>。
                     </p>
                     <p data-lang="en">
-                        Hello! I'm Chase Cai (蔡子健), currently learning how to use OpenClaw. I'm passionate about technology and love exploring new things.
+                        Hello! I'm Zijian Cai, currently a Master's student at the University of Science and Technology of China (USTC). My research interests focus on <strong>Embodied AI</strong>, <strong>3D Perception</strong>, and <strong>Deep Learning</strong>.
                     </p>
+                    <div class="highlight-box">
+                        <p data-lang="zh"><strong>研究方向：</strong>3D实例分割、在线3D感知、时序建模、跨模态学习</p>
+                        <p data-lang="en"><strong>Research Interests:</strong> 3D Instance Segmentation, Online 3D Perception, Temporal Modeling, Cross-modal Learning</p>
+                    </div>
                     <p data-lang="zh">
-                        <strong>研究方向/兴趣：</strong>人工智能、机器学习、深度学习
+                        本科毕业于中国石油大学（华东）计算机科学与技术专业，以专业排名 <strong>4/118</strong> 的优异成绩推免至中科大。在学术研究方面，已在 NeurIPS、ICASSP 等顶级会议发表论文。
                     </p>
                     <p data-lang="en">
-                        <strong>Research Interests:</strong> Artificial Intelligence, Machine Learning, Deep Learning
+                        I received my Bachelor's degree in Computer Science from China University of Petroleum (East China), ranking <strong>4/118</strong> in my major. I have published papers in top-tier conferences including NeurIPS and ICASSP.
                     </p>
                 </div>
             </section>
@@ -501,14 +621,26 @@
                 </h2>
                 <ul class="news-list">
                     <li class="news-item">
-                        <span class="news-date">2025.03</span>
-                        <span data-lang="zh">开始学习 OpenClaw 的使用</span>
-                        <span data-lang="en">Started learning OpenClaw</span>
+                        <span class="news-date">2025.06</span>
+                        <span data-lang="zh">论文 SEFO 投稿至 ICASSP 2026</span>
+                        <span data-lang="en">Paper SEFO submitted to ICASSP 2026</span>
+                        <span class="news-tag">Submitted</span>
+                    </li>
+                    <li class="news-item">
+                        <span class="news-date">2025.05</span>
+                        <span data-lang="zh">论文被 NeurIPS 2026 接收</span>
+                        <span data-lang="en">Paper accepted to NeurIPS 2026</span>
+                        <span class="news-tag award">Accepted</span>
                     </li>
                     <li class="news-item">
                         <span class="news-date">2024.09</span>
-                        <span data-lang="zh">新学期开始</span>
-                        <span data-lang="en">New semester began</span>
+                        <span data-lang="zh">获得中科大学业一等奖学金</span>
+                        <span data-lang="en">Received USTC Academic Excellence Scholarship</span>
+                    </li>
+                    <li class="news-item">
+                        <span class="news-date">2024.09</span>
+                        <span data-lang="zh">进入中国科学技术大学攻读硕士</span>
+                        <span data-lang="en">Started Master's program at USTC</span>
                     </li>
                 </ul>
             </section>
@@ -520,16 +652,52 @@
                     <span data-lang="zh">论文发表</span>
                     <span data-lang="en">Publications</span>
                 </h2>
+                
                 <div class="publication-item">
-                    <div class="publication-venue">[Conference/Journal 2024]</div>
+                    <div class="publication-venue">
+                        NeurIPS 2026
+                        <span class="accepted">✓ Accepted</span>
+                    </div>
                     <div class="publication-title">
-                        <a href="#">
-                            <span data-lang="zh">论文标题（点击此处替换为你的论文链接）</span>
-                            <span data-lang="en">Paper Title (Click to replace with your paper link)</span>
+                        <a href="https://openreview.net/pdf?id=qu7swcInlt" target="_blank">
+                            Online Segment Any 3D Thing as Instance Tracking
                         </a>
                     </div>
                     <div class="publication-authors">
-                        Author1, Author2, <strong>Chase Cai (蔡子健)</strong>, Author3
+                        <span data-lang="zh">第二作者</span>
+                        <span data-lang="en">Second Author</span> · <strong data-lang="zh">蔡子健</strong><strong data-lang="en">Zijian Cai</strong>
+                    </div>
+                    <div class="publication-note">
+                        <span data-lang="zh">
+                            <strong>贡献：</strong>将在线3D分割重新定义为实例跟踪问题，引入空间一致性学习解决跨帧掩码一致性问题，效果较SOTA方法AP提升2.8%。负责论文引言、实验、方法部分及所有可视化。
+                        </span>
+                        <span data-lang="en">
+                            <strong>Contribution:</strong> Reformulated online 3D segmentation as instance tracking, introduced spatial consistency learning for cross-frame mask consistency. Achieved 2.8% AP improvement over SOTA. Responsible for introduction, experiments, methods, and all visualizations.
+                        </span>
+                    </div>
+                </div>
+
+                <div class="publication-item">
+                    <div class="publication-venue">
+                        ICASSP 2026
+                        <span class="submitted">⏳ Submitted</span>
+                    </div>
+                    <div class="publication-title">
+                        <a href="#">
+                            SEFO: Semantic-Enhanced Fusion for Online 3D Instance Segmentation
+                        </a>
+                    </div>
+                    <div class="publication-authors">
+                        <span data-lang="zh">第一作者</span>
+                        <span data-lang="en">First Author</span> · <strong data-lang="zh">蔡子健</strong><strong data-lang="en">Zijian Cai</strong>
+                    </div>
+                    <div class="publication-note">
+                        <span data-lang="zh">
+                            <strong>贡献：</strong>提出层次融合框架，结合point-level与SAM pixel-level交互保证几何理解，采用instance-level与CLIP center-pixel交互解决外参不准确时的噪声问题。跨模态类别对齐机制使方法较SOTA在ScanNet数据集AP提升1.4%。
+                        </span>
+                        <span data-lang="en">
+                            <strong>Contribution:</strong> Proposed hierarchical fusion framework combining point-level and SAM pixel-level interactions for geometric understanding. Cross-modal category alignment achieved 1.4% AP improvement over SOTA on ScanNet.
+                        </span>
                     </div>
                 </div>
             </section>
@@ -541,15 +709,65 @@
                     <span data-lang="zh">荣誉奖项</span>
                     <span data-lang="en">Honors & Awards</span>
                 </h2>
+                
                 <div class="honor-item">
                     <span class="honor-date">2024</span>
-                    <span data-lang="zh">某某奖学金</span>
-                    <span data-lang="en">Scholarship Award</span>
+                    <div>
+                        <span data-lang="zh">中国科学技术大学 学业一等奖学金</span>
+                        <span data-lang="en">USTC Academic Excellence Scholarship (First Prize)</span>
+                    </div>
                 </div>
+                
                 <div class="honor-item">
                     <span class="honor-date">2023</span>
-                    <span data-lang="zh">某某竞赛一等奖</span>
-                    <span data-lang="en">First Prize in Competition</span>
+                    <div>
+                        <span data-lang="zh">中国大学生计算机设计大赛 国家一等奖</span>
+                        <span data-lang="en">Chinese University Student Computer Design Competition - National First Prize</span>
+                        <span class="honor-level national">National</span>
+                    </div>
+                </div>
+
+                <div class="honor-item">
+                    <span class="honor-date">2023</span>
+                    <div>
+                        <span data-lang="zh">中国高校计算机大赛 国家三等奖</span>
+                        <span data-lang="en">China Collegiate Computing Contest - National Third Prize</span>
+                        <span class="honor-level national">National</span>
+                    </div>
+                </div>
+
+                <div class="honor-item">
+                    <span class="honor-date">2023</span>
+                    <div>
+                        <span data-lang="zh">中国大学生服务外包创新创业大赛 国家三等奖</span>
+                        <span data-lang="en">China Service Outsourcing Innovation Competition - National Third Prize</span>
+                        <span class="honor-level national">National</span>
+                    </div>
+                </div>
+
+                <div class="honor-item">
+                    <span class="honor-date">2023</span>
+                    <div>
+                        <span data-lang="zh">美国大学生数学建模竞赛 特等奖提名奖（F奖，0.2%）</span>
+                        <span data-lang="en">MCM/ICM - Finalist Award (F奖, Top 0.2%)</span>
+                        <span class="honor-level international">International</span>
+                    </div>
+                </div>
+
+                <div class="honor-item">
+                    <span class="honor-date">2024</span>
+                    <div>
+                        <span data-lang="zh">创新创业卓越之星奖学金（全校本硕博20人）</span>
+                        <span data-lang="en">Innovation & Entrepreneurship Star Scholarship (Top 20 among all students)</span>
+                    </div>
+                </div>
+
+                <div class="honor-item">
+                    <span class="honor-date">2024</span>
+                    <div>
+                        <span data-lang="zh">国家励志奖学金、荣誉学士学位</span>
+                        <span data-lang="en">National Endeavor Scholarship, Honorary Bachelor's Degree</span>
+                    </div>
                 </div>
             </section>
 
@@ -560,18 +778,38 @@
                     <span data-lang="zh">教育经历</span>
                     <span data-lang="en">Education</span>
                 </h2>
+                
                 <div class="timeline-item">
-                    <div class="timeline-date">2022.09 - <span data-lang="zh">至今</span><span data-lang="en">Present</span></div>
+                    <div class="timeline-date">2024.09 - <span data-lang="zh">至今</span><span data-lang="en">Present</span></div>
                     <div class="timeline-content">
-                        <h4><span data-lang="zh">某某大学</span><span data-lang="en">University Name</span></h4>
-                        <p><span data-lang="zh">专业名称（本科/硕士/博士）</span><span data-lang="en">Major (Bachelor/Master/PhD)</span></p>
+                        <h4><span data-lang="zh">中国科学技术大学</span><span data-lang="en">University of Science and Technology of China (USTC)</span></h4>
+                        <p class="degree">
+                            <span data-lang="zh">电子信息科学与技术（推免）· 硕士 · 自动化系</span>
+                            <span data-lang="en">Electronic Information Science & Technology · Master · Dept. of Automation</span>
+                        </p>
+                        <p class="dept"><span data-lang="zh">985工程 · 安徽合肥</span><span data-lang="en">985 Project · Hefei, China</span></p>
+                        <ul class="highlights">
+                            <li data-lang="zh">学业一等奖学金</li>
+                            <li data-lang="en">Academic Excellence Scholarship (First Prize)</li>
+                        </ul>
                     </div>
                 </div>
+
                 <div class="timeline-item">
-                    <div class="timeline-date">2018.09 - 2022.06</div>
+                    <div class="timeline-date">2020.09 - 2024.06</div>
                     <div class="timeline-content">
-                        <h4><span data-lang="zh">某某高中</span><span data-lang="en">High School Name</span></h4>
-                        <p><span data-lang="zh">高中教育</span><span data-lang="en">High School Education</span></p>
+                        <h4><span data-lang="zh">中国石油大学（华东）</span><span data-lang="en">China University of Petroleum (East China)</span></h4>
+                        <p class="degree">
+                            <span data-lang="zh">计算机科学与技术 · 本科 · 计算机系</span>
+                            <span data-lang="en">Computer Science · Bachelor · Dept. of Computer Science</span>
+                        </p>
+                        <p class="dept"><span data-lang="zh">211工程 · 山东青岛</span><span data-lang="en">211 Project · Qingdao, China</span></p>
+                        <ul class="highlights">
+                            <li><span data-lang="zh">GPA：3.5/4.0 · 专业排名：4/118</span><span data-lang="en">GPA: 3.5/4.0 · Ranking: 4/118</span></li>
+                            <li><span data-lang="zh">英语四级 594 · 英语六级 530</span><span data-lang="en">CET-4: 594 · CET-6: 530</span></li>
+                            <li data-lang="zh">推免至中国科学技术大学</li>
+                            <li data-lang="en">Recommended for admission to USTC</li>
+                        </ul>
                     </div>
                 </div>
             </section>
@@ -581,13 +819,63 @@
                 <h2 class="section-title">
                     <i class="fas fa-briefcase"></i>
                     <span data-lang="zh">实习经历</span>
-                    <span data-lang="en">Experience</span>
+                    <span data-lang="en">Internship</span>
                 </h2>
+                
                 <div class="timeline-item">
-                    <div class="timeline-date">2024.06 - 2024.09</div>
+                    <div class="timeline-date">2024.09 - 2024.12</div>
                     <div class="timeline-content">
-                        <h4><span data-lang="zh">某某公司</span><span data-lang="en">Company Name</span></h4>
-                        <p><span data-lang="zh">职位：实习生</span><span data-lang="en">Position: Intern</span></p>
+                        <h4>Momenta</h4>
+                        <p class="degree"><span data-lang="zh">路测实习生 · AEB（Autonomous Emergency Braking）</span><span data-lang="en">Road Test Intern · AEB (Autonomous Emergency Braking)</span></p>
+                        <ul class="highlights">
+                            <li data-lang="zh">
+                                <strong>数采方案设计：</strong>完成上汽智己L6、日产N7、埃安RT等车型AEB功能道路数据采集方案设计，覆盖6类核心场景，明确12项采集指标，累计支撑1000+km有效数据采集
+                            </li>
+                            <li data-lang="en">
+                                <strong>Data Collection:</strong> Designed AEB road test data collection for IM Motors L6, Nissan N7, and Aion RT; covered 6 core scenarios with 12 metrics; supported 1000+ km of effective data collection
+                            </li>
+                            <li data-lang="zh">
+                                <strong>测试执行：</strong>完成400+次场景验证，重点针对"鬼探头"、交叉路口冲突等corner case，精准定位近70个问题，推动20余次功能迭代优化
+                            </li>
+                            <li data-lang="en">
+                                <strong>Testing:</strong> Completed 400+ scenario validations focusing on corner cases; identified ~70 issues and drove 20+ iterations
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Skills -->
+            <section id="skills" class="section">
+                <h2 class="section-title">
+                    <i class="fas fa-tools"></i>
+                    <span data-lang="zh">技能</span>
+                    <span data-lang="en">Skills</span>
+                </h2>
+                <div class="skills-grid">
+                    <div class="skill-item">
+                        <strong data-lang="zh">编程语言</strong><br>
+                        <strong data-lang="en">Programming</strong><br>
+                        <span data-lang="zh">Python, C++, CUDA</span>
+                        <span data-lang="en">Python, C++, CUDA</span>
+                    </div>
+                    <div class="skill-item">
+                        <strong data-lang="zh">深度学习框架</strong><br>
+                        <strong data-lang="en">DL Frameworks</strong><br>
+                        <span data-lang="zh">PyTorch, TensorFlow</span>
+                        <span data-lang="en">PyTorch, TensorFlow</span>
+                    </div>
+                    <div class="skill-item">
+                        <strong data-lang="zh">研究方向</strong><br>
+                        <strong data-lang="en">Research Areas</strong><br>
+                        <span data-lang="zh">3D视觉, 实例分割, 时序建模</span>
+                        <span data-lang="en">3D Vision, Instance Segmentation, Temporal Modeling</span>
+                    </div>
+                    <div class="skill-item">
+                        <strong data-lang="zh">语言能力</strong><br>
+                        <strong data-lang="en">Languages</strong><br>
+                        <span data-lang="zh">中文（母语）, 英语（CET-6: 530）</span>
+                        <span data-lang="en">Chinese (Native), English (CET-6: 530)</span>
                     </div>
                 </div>
             </section>
@@ -596,7 +884,7 @@
 
     <!-- Footer -->
     <footer style="text-align: center; padding: 30px; color: #666; background: #fff; margin-top: 40px;">
-        <p>© 2025 <span data-lang="zh">蔡子健</span><span data-lang="en">Chase Cai</span>. All Rights Reserved.</p>
+        <p>© 2025 <span data-lang="zh">蔡子健</span><span data-lang="en">Zijian Cai</span>. All Rights Reserved.</p>
         <p style="margin-top: 10px; font-size: 0.9em;">
             <span data-lang="zh">基于</span><span data-lang="en">Based on</span> <a href="https://alberttan404.github.io/" target="_blank" style="color: #0066cc;">AcademicPages</a> <span data-lang="zh">模板</span><span data-lang="en">template</span>
         </p>
