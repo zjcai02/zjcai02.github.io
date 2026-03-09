@@ -539,6 +539,16 @@
                         <span data-lang="en">Experience</span>
                     </a>
                 </li>
+                <li>
+                    <a href="javascript:void(0)" onclick="exportPDF()" style="color: #28a745;">
+                        <i class="fas fa-download"></i> <span data-lang="zh">导出PDF</span><span data-lang="en">Export PDF</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)" onclick="openEditor()" style="color: #0066cc;">
+                        <i class="fas fa-edit"></i> <span data-lang="zh">编辑</span><span data-lang="en">Edit</span>
+                    </a>
+                </li>
             </ul>
         </div>
     </nav>
@@ -823,6 +833,34 @@
                 </h2>
                 
                 <div class="timeline-item">
+                    <div class="timeline-date">2025.11 - 2026.04</div>
+                    <div class="timeline-content">
+                        <h4>NIO 蔚来</h4>
+                        <p class="degree"><span data-lang="zh">大模型算法实习生 · 蔚来座舱</span><span data-lang="en">LLM Algorithm Intern · NIO Cockpit</span></p>
+                        <ul class="highlights">
+                            <li data-lang="zh">
+                                <strong>大模型检测能力提升：</strong>针对MLLM在检测任务中坐标以文本形式生成导致输出格式不一致等痛点，进行深入文献调研与实验分析
+                            </li>
+                            <li data-lang="en">
+                                <strong>MLLM Detection:</strong> Conducted research on coordinate generation issues in MLLM detection tasks
+                            </li>
+                            <li data-lang="zh">
+                                <strong>架构设计：</strong>提出基于视觉令牌（Visual Token）的MLLM架构，将Patch特征经轻量级投影后拼接至文本词表，使模型直接输出视觉Token作为检测结果
+                            </li>
+                            <li data-lang="en">
+                                <strong>Architecture:</strong> Proposed Visual Token-based MLLM architecture with lightweight projection to text vocabulary
+                            </li>
+                            <li data-lang="zh">
+                                <strong>业务落地：</strong>在座舱数据集上将AP50从40.6提升至45.9，已在"蔚来守卫大模型4.0"上线
+                            </li>
+                            <li data-lang="en">
+                                <strong>Impact:</strong> Improved AP50 from 40.6 to 45.9, deployed in "NIO Guardian LLM 4.0"
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
                     <div class="timeline-date">2024.09 - 2024.12</div>
                     <div class="timeline-content">
                         <h4>Momenta</h4>
@@ -891,6 +929,7 @@
     </footer>
 
     <!-- Language Toggle Script -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <script>
         function toggleLanguage() {
             const body = document.body;
@@ -910,6 +949,100 @@
                 document.body.classList.add('lang-en');
             }
         });
+
+        // Resume Edit Functions
+        function openEditor() {
+            document.getElementById('editModal').style.display = 'flex';
+        }
+
+        function closeEditor() {
+            document.getElementById('editModal').style.display = 'none';
+        }
+
+        function saveResume() {
+            // Save to localStorage
+            const resumeData = {
+                name: document.getElementById('editName').value,
+                title: document.getElementById('editTitle').value,
+                bio: document.getElementById('editBio').value,
+                email: document.getElementById('editEmail').value,
+                phone: document.getElementById('editPhone').value,
+                about: document.getElementById('editAbout').value,
+                research: document.getElementById('editResearch').value
+            };
+            localStorage.setItem('resumeData', JSON.stringify(resumeData));
+            
+            // Update display
+            document.querySelector('.profile-name').innerHTML = 
+                `<span data-lang="zh">${resumeData.name}</span><span data-lang="en">${resumeData.name}</span>`;
+            document.querySelector('.profile-title').innerHTML = 
+                `<span data-lang="zh">${resumeData.title}</span><span data-lang="en">${resumeData.title}</span>`;
+            document.querySelector('.profile-bio').innerHTML = 
+                `<span data-lang="zh">${resumeData.bio}</span><span data-lang="en">${resumeData.bio}</span>`;
+            
+            // Update contact info
+            const profileInfo = document.querySelector('.profile-info');
+            profileInfo.innerHTML = `
+                <li><i class="fas fa-map-marker-alt"></i><span data-lang="zh">安徽合肥</span><span data-lang="en">Hefei, China</span></li>
+                <li><i class="fas fa-envelope"></i><a href="mailto:${resumeData.email}">${resumeData.email}</a></li>
+                <li><i class="fas fa-phone"></i><a href="tel:${resumeData.phone}">${resumeData.phone}</a></li>
+                <li><i class="fab fa-github"></i><a href="https://github.com/Chase-Arthur" target="_blank">GitHub</a></li>
+            `;
+            
+            // Update about section
+            const aboutText = document.querySelector('.about-text');
+            aboutText.innerHTML = `
+                <p data-lang="zh">${resumeData.about}</p>
+                <p data-lang="en">${resumeData.about}</p>
+                <div class="highlight-box">
+                    <p data-lang="zh"><strong>研究方向：</strong>${resumeData.research}</p>
+                    <p data-lang="en"><strong>Research Interests:</strong> ${resumeData.research}</p>
+                </div>
+            `;
+            
+            closeEditor();
+            alert('简历已保存！');
+        }
+
+        function exportPDF() {
+            const element = document.querySelector('.main-content');
+            const opt = {
+                margin: 10,
+                filename: 'Zijian_Cai_Resume.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2 },
+                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+            };
+            html2pdf().set(opt).from(element).save();
+        }
+
+        // Load saved data on page load
+        window.onload = function() {
+            const saved = localStorage.getItem('resumeData');
+            if (saved) {
+                // Data will be applied after DOM is ready
+            }
+        };
     </script>
+
+    <!-- Edit Modal -->
+    <div id="editModal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);z-index:1000;align-items:center;justify-content:center;">
+        <div style="background:#fff;border-radius:12px;padding:30px;max-width:600px;width:90%;max-height:80vh;overflow-y:auto;">
+            <h2 style="margin-bottom:20px;">编辑简历 / Edit Resume</h2>
+            <div style="display:grid;gap:15px;">
+                <label>姓名 / Name: <input type="text" id="editName" value="蔡子健" style="width:100%;padding:8px;margin-top:5px;"></label>
+                <label>职位 / Title: <input type="text" id="editTitle" value="中国科学技术大学 · 硕士研究生" style="width:100%;padding:8px;margin-top:5px;"></label>
+                <label>简介 / Bio: <input type="text" id="editBio" value="具身智能 · 3D感知 · 深度学习" style="width:100%;padding:8px;margin-top:5px;"></label>
+                <label>邮箱 / Email: <input type="email" id="editEmail" value="zjcai@mail.ustc.edu.cn" style="width:100%;padding:8px;margin-top:5px;"></label>
+                <label>电话 / Phone: <input type="tel" id="editPhone" value="19862855610" style="width:100%;padding:8px;margin-top:5px;"></label>
+                <label>关于我 / About: <textarea id="editAbout" rows="3" style="width:100%;padding:8px;margin-top:5px;">你好！我是蔡子健，目前是中国科学技术大学自动化系的硕士研究生，研究方向主要聚焦于具身智能、3D感知和深度学习。</textarea></label>
+                <label>研究方向 / Research: <input type="text" id="editResearch" value="3D实例分割、在线3D感知、时序建模、跨模态学习" style="width:100%;padding:8px;margin-top:5px;"></label>
+            </div>
+            <div style="margin-top:20px;display:flex;gap:10px;justify-content:flex-end;">
+                <button onclick="closeEditor()" style="padding:10px 20px;cursor:pointer;">取消 / Cancel</button>
+                <button onclick="saveResume()" style="padding:10px 20px;background:#0066cc;color:#fff;border:none;border-radius:6px;cursor:pointer;">保存 / Save</button>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
