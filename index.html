@@ -176,7 +176,7 @@ body.lang-en [data-lang="en"].flex{display:flex}
         </ul>
         <div class="nav-right">
             <button class="lang-btn" onclick="toggleLanguage()"><i class="fas fa-globe"></i><span data-lang="zh">EN</span><span data-lang="en">中文</span></button>
-            <a href="javascript:void(0)" onclick="exportPDF()" class="nav-pdf-btn"><i class="fas fa-file-pdf"></i><span data-lang="zh">PDF</span><span data-lang="en">PDF</span></a>
+            <a href="Zijian_Cai_Resume.pdf" download class="nav-pdf-btn"><i class="fas fa-file-pdf"></i><span data-lang="zh">PDF</span><span data-lang="en">PDF</span></a>
             <button class="hamburger" onclick="toggleMobileNav()" aria-label="Menu"><i class="fas fa-bars"></i></button>
         </div>
     </div>
@@ -195,7 +195,7 @@ body.lang-en [data-lang="en"].flex{display:flex}
     </ul>
     <div class="mobile-nav-actions">
         <button class="lang-btn" onclick="toggleLanguage();toggleMobileNav();"><i class="fas fa-globe"></i><span data-lang="zh">English</span><span data-lang="en">中文</span></button>
-        <a href="javascript:void(0)" onclick="exportPDF();toggleMobileNav();" class="nav-pdf-btn"><i class="fas fa-file-pdf"></i><span data-lang="zh">导出 PDF</span><span data-lang="en">Export PDF</span></a>
+        <a href="Zijian_Cai_Resume.pdf" download class="nav-pdf-btn" onclick="toggleMobileNav()"><i class="fas fa-file-pdf"></i><span data-lang="zh">导出 PDF</span><span data-lang="en">Export PDF</span></a>
     </div>
 </div>
 <div class="main-content">
@@ -471,7 +471,6 @@ body.lang-en [data-lang="en"].flex{display:flex}
         <a href="https://alberttan404.github.io/" target="_blank"><span data-lang="zh">基于 AcademicPages 模板</span><span data-lang="en">Based on AcademicPages</span></a>
     </div>
 </footer>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 <script>
 function toggleLanguage(){
     var b=document.body;
@@ -506,70 +505,6 @@ document.addEventListener('DOMContentLoaded',function(){
     fadeEls.forEach(function(el){fadeObs.observe(el)});
 });
 
-function exportPDF(){
-    var isEn=document.body.classList.contains('lang-en');
-    var lang=isEn?'en':'zh';
-    var c={
-        zh:{
-            name:'蔡子健',title:'中国科学技术大学 · 自动化系 · 硕士研究生',
-            bio:'多模态大模型 · 3D感知 · 具身智能',
-            about:'我是蔡子健，目前是中国科学技术大学自动化系的硕士研究生，研究方向主要聚焦于多模态大模型（MLLM）和具身智能。曾在蔚来汽车从事MLLM算法研发，参与图像检测与视频理解能力的提升工作。本科毕业于中国石油大学（华东）计算机科学与技术专业，以专业排名 4/118 的优异成绩推免至中科大。在学术研究方面，已在 NeurIPS、ICASSP 等顶级会议发表论文。',
-            research:'多模态大模型（MLLM）、3D实例分割、在线3D感知、具身智能、时序建模',
-            secs:{edu:'教育经历',exp:'实习经历',pub:'论文发表',skill:'技能',hon:'荣誉奖项'},
-            contact:[{i:'📧',t:'zjcai@mail.ustc.edu.cn'},{i:'📧',t:'1084734352@qq.com'},{i:'📱',t:'19862855610'},{i:'🏠',t:'安徽合肥'},{i:'💻',t:'github.com/Chase-Arthur'}],
-            edu:[{d:'2024.09 - 至今',s:'中国科学技术大学',g:'电子信息科学与技术（推免）· 硕士 · 自动化系',n:'985工程 · 安徽合肥 · 预计2027年6月毕业 · 排名47/160（前30%） · 学业一等奖学金'},
-                 {d:'2020.09 - 2024.06',s:'中国石油大学（华东）',g:'计算机科学与技术 · 本科 · 计算机系',n:'211工程 · 山东青岛 · GPA: 3.5/4.0 · 专业排名: 4/118 · 推免至中科大'}],
-            exp:[{d:'2025.11 - 2026.03',c:'NIO 蔚来',r:'多模态大模型算法实习生 · 蔚来座舱',b:['设计基于Visual Reference Token的MLLM架构，AP50从40.6提升至45.9，已部署于"Cedar雪松1.4.0"版本','通过GRPO强化学习微调自有MLLM，行为识别准确率从64%提升至73%']},
-                 {d:'2025.06 - 2025.09',c:'联想集团 Lenovo',r:'3D算法实习生',b:['开发基于深度相机的点云感知模块，实现笔记本电脑多姿态高精度轮廓提取','设计Top-K簇合并策略，感知成功率从70%提升至95%','为联想25款小新、拯救者、ThinkPad等系列产品提供测试保障']},
-                 {d:'2024.09 - 2024.12',c:'Momenta',r:'路测实习生 · AEB',b:['完成上汽智己L6、日产N7、埃安RT等车型AEB功能道路数据采集方案设计，累计支撑1000+km有效数据采集','完成400+次场景验证，精准定位近70个问题，推动20余次功能迭代优化']}],
-            pub:[{v:'NeurIPS 2026 ✓ Accepted',t:'Online Segment Any 3D Thing as Instance Tracking',a:'第二作者 · 蔡子健',n:'将在线3D分割重新定义为实例跟踪问题，引入空间一致性学习，AP提升2.8%。'},
-                 {v:'ICASSP 2026 ✓ Accepted',t:'SEFO: Semantic-Enhanced Fusion for Online 3D Instance Segmentation',a:'第一作者 · 蔡子健',n:'提出语义增强层次融合框架，跨模态类别对齐使ScanNet AP提升1.4%。'}],
-            skills:[{c:'编程语言',i:'Python, C++, CUDA, JavaScript'},{c:'深度学习框架',i:'PyTorch, TensorFlow'},{c:'研究方向',i:'3D视觉, 实例分割, MLLM, 具身智能, 时序建模, 跨模态学习'},{c:'工具',i:'SAM, CLIP, Open3D, ROS'},{c:'语言能力',i:'中文（母语）, 英语（CET-6: 530）'}],
-            honors:[{d:'2024.09',t:'创新创业卓越之星奖学金（全校本硕博20人）'},{d:'2024.09',t:'中国科学技术大学 学业一等奖学金'},{d:'2024.06',t:'国家励志奖学金、荣誉学士学位'},{d:'2023.09',t:'中国高校计算机大赛 国家三等奖'},{d:'2023.08',t:'中国大学生计算机设计大赛 国家一等奖'},{d:'2023.03',t:'美国大学生数学建模竞赛 特等奖提名（F奖，Top 0.2%）'}]
-        },
-        en:{
-            name:'Zijian Cai',title:"USTC · Dept. of Automation · Master's Student",
-            bio:'MLLM · 3D Perception · Embodied AI',
-            about:"I'm Zijian Cai, currently a Master's student at USTC. My research focuses on MLLM and Embodied AI. I worked at NIO on MLLM algorithm development. I received my Bachelor's from China University of Petroleum (East China), ranking 4/118. Published at NeurIPS and ICASSP.",
-            research:'MLLM, 3D Instance Segmentation, Online 3D Perception, Embodied AI, Temporal Modeling',
-            secs:{edu:'Education',exp:'Internship Experience',pub:'Publications',skill:'Skills',hon:'Honors & Awards'},
-            contact:[{i:'📧',t:'zjcai@mail.ustc.edu.cn'},{i:'📧',t:'1084734352@qq.com'},{i:'📱',t:'19862855610'},{i:'🏠',t:'Hefei, China'},{i:'💻',t:'github.com/Chase-Arthur'}],
-            edu:[{d:'2024.09 - Present',s:'University of Science and Technology of China (USTC)',g:"Electronic Information Science & Technology · Master · Dept. of Automation",n:'985 Project · Hefei, China · Expected Graduation: June 2027 · Ranking: 47/160 (Top 30%)'},
-                 {d:'2020.09 - 2024.06',s:'China University of Petroleum (East China)',g:'Computer Science · Bachelor · Dept. of Computer Science',n:'211 Project · Qingdao, China · GPA: 3.5/4.0 · Ranking: 4/118 · Recommended to USTC'}],
-            exp:[{d:'2025.11 - 2026.03',c:'NIO',r:'Multimodal LLM Algorithm Intern · NIO Cockpit',b:['Designed Visual Reference Token-based MLLM architecture; improved AP50 from 40.6 to 45.9; deployed in Cedar 1.4.0','Fine-tuned MLLM via GRPO RL; improved action recognition accuracy from 64% to 73%']},
-                 {d:'2025.06 - 2025.09',c:'Lenovo Group',r:'3D Algorithm Intern',b:['Developed depth camera-based point cloud perception module for multi-pose laptop contour extraction','Designed Top-K cluster merging strategy; improved perception success rate from 70% to 95%','Provided testing support for 25 Lenovo product lines']},
-                 {d:'2024.09 - 2024.12',c:'Momenta',r:'Road Test Intern · AEB',b:['Designed AEB road test data collection for multiple car models; supported 1000+ km','Completed 400+ scenario validations; identified ~70 issues; drove 20+ iterations']}],
-            pub:[{v:'NeurIPS 2026 ✓ Accepted',t:'Online Segment Any 3D Thing as Instance Tracking',a:'Second Author · Zijian Cai',n:'Reformulated online 3D segmentation as instance tracking; 2.8% AP improvement.'},
-                 {v:'ICASSP 2026 ✓ Accepted',t:'SEFO: Semantic-Enhanced Fusion for Online 3D Instance Segmentation',a:'First Author · Zijian Cai',n:'Semantic-enhanced hierarchical fusion; 1.4% AP improvement on ScanNet.'}],
-            skills:[{c:'Programming',i:'Python, C++, CUDA, JavaScript'},{c:'DL Frameworks',i:'PyTorch, TensorFlow'},{c:'Research Areas',i:'3D Vision, Instance Segmentation, MLLM, Embodied AI, Temporal Modeling, Cross-modal Learning'},{c:'Tools',i:'SAM, CLIP, Open3D, ROS'},{c:'Languages',i:'Chinese (Native), English (CET-6: 530)'}],
-            honors:[{d:'2024.09',t:'Innovation & Entrepreneurship Star Scholarship (Top 20)'},{d:'2024.09',t:'USTC Academic Excellence Scholarship (First Prize)'},{d:'2024.06',t:'National Endeavor Scholarship, Honorary Bachelor Degree'},{d:'2023.09',t:'China Collegiate Computing Contest - National Third Prize'},{d:'2023.08',t:'Chinese Univ. Computer Design Competition - National First Prize'},{d:'2023.03',t:'MCM/ICM - Finalist Award (F Prize, Top 0.2%)'}]
-        }
-    };
-    var d=c[lang],today=new Date().toISOString().split('T')[0];
-    var ch=d.contact.map(function(x){return '<span style="margin-right:18px;font-size:10.5px;">'+x.i+' '+x.t+'</span>';}).join('');
-    var eh=d.edu.map(function(e){return '<div style="margin-bottom:12px;"><div style="display:flex;justify-content:space-between;align-items:baseline;"><strong style="font-size:11.5px;">'+e.s+'</strong><span style="color:#2563eb;font-size:10.5px;font-weight:600;">'+e.d+'</span></div><div style="color:#444;font-size:10.5px;">'+e.g+'</div><div style="color:#666;font-size:10px;font-style:italic;">'+e.n+'</div></div>';}).join('');
-    var xh=d.exp.map(function(e){return '<div style="margin-bottom:14px;"><div style="display:flex;justify-content:space-between;align-items:baseline;"><strong style="font-size:11.5px;">'+e.c+'</strong><span style="color:#2563eb;font-size:10.5px;font-weight:600;">'+e.d+'</span></div><div style="color:#444;font-size:10.5px;margin-bottom:4px;">'+e.r+'</div><ul style="margin:0;padding-left:16px;">'+e.b.map(function(b){return '<li style="font-size:10px;color:#444;margin-bottom:3px;line-height:1.5;">'+b+'</li>';}).join('')+'</ul></div>';}).join('');
-    var ph=d.pub.map(function(p){return '<div style="margin-bottom:12px;"><div style="font-size:10.5px;font-weight:700;color:#2563eb;margin-bottom:3px;">'+p.v+'</div><div style="font-size:11px;font-weight:600;margin-bottom:3px;">'+p.t+'</div><div style="font-size:10px;color:#666;margin-bottom:3px;">'+p.a+'</div><div style="font-size:9.5px;color:#555;background:#f8fafc;padding:6px 8px;border-radius:4px;">'+p.n+'</div></div>';}).join('');
-    var sh='<div style="display:flex;flex-wrap:wrap;gap:8px;">'+d.skills.map(function(s){return '<div style="flex:1;min-width:200px;background:#f8fafc;padding:8px 10px;border-radius:4px;border-left:3px solid #2563eb;"><strong style="font-size:10.5px;color:#2563eb;">'+s.c+'</strong><br><span style="font-size:10px;color:#444;">'+s.i+'</span></div>';}).join('')+'</div>';
-    var hh=d.honors.map(function(h){return '<div style="display:flex;gap:10px;margin-bottom:6px;"><span style="min-width:50px;color:#2563eb;font-weight:600;font-size:10.5px;">'+h.d+'</span><span style="font-size:10.5px;color:#333;">'+h.t+'</span></div>';}).join('');
-    var sd='<div style="border:none;border-top:1px solid #e0e0e0;margin:14px 0;"></div>';
-    var al=lang==='zh'?'个人简介':'About Me',rl=lang==='zh'?'研究方向：':'Research Interests: ',gl=lang==='zh'?'生成日期':'Generated';
-    var h='<div id="pdf-resume" style="font-family:Inter,Noto Sans SC,-apple-system,sans-serif;color:#1a1a2e;line-height:1.6;width:210mm;padding:15mm 15mm 10mm 15mm;background:#fff;font-size:11px;">'+
-        '<div style="text-align:center;margin-bottom:8px;"><h1 style="font-size:22px;font-weight:700;margin:0 0 4px 0;color:#111;">'+d.name+'</h1><div style="font-size:12px;color:#2563eb;font-weight:500;margin-bottom:6px;">'+d.title+'</div><div style="font-size:10.5px;color:#555;margin-bottom:4px;">'+d.bio+'</div><div style="margin-top:6px;">'+ch+'</div></div>'+sd+
-        '<div style="margin-bottom:4px;"><h2 style="font-size:13px;font-weight:700;color:#2563eb;border-bottom:1.5px solid #2563eb;padding-bottom:4px;margin-bottom:8px;">'+al+'</h2><p style="font-size:10.5px;color:#333;line-height:1.6;margin-bottom:4px;">'+d.about+'</p><p style="font-size:10.5px;color:#333;"><strong>'+rl+'</strong>'+d.research+'</p></div>'+sd+
-        '<div style="margin-bottom:4px;"><h2 style="font-size:13px;font-weight:700;color:#2563eb;border-bottom:1.5px solid #2563eb;padding-bottom:4px;margin-bottom:8px;">'+d.secs.edu+'</h2>'+eh+'</div>'+sd+
-        '<div style="margin-bottom:4px;"><h2 style="font-size:13px;font-weight:700;color:#2563eb;border-bottom:1.5px solid #2563eb;padding-bottom:4px;margin-bottom:8px;">'+d.secs.exp+'</h2>'+xh+'</div>'+sd+
-        '<div style="margin-bottom:4px;"><h2 style="font-size:13px;font-weight:700;color:#2563eb;border-bottom:1.5px solid #2563eb;padding-bottom:4px;margin-bottom:8px;">'+d.secs.pub+'</h2>'+ph+'</div>'+sd+
-        '<div style="margin-bottom:4px;"><h2 style="font-size:13px;font-weight:700;color:#2563eb;border-bottom:1.5px solid #2563eb;padding-bottom:4px;margin-bottom:8px;">'+d.secs.skill+'</h2>'+sh+'</div>'+sd+
-        '<div style="margin-bottom:4px;"><h2 style="font-size:13px;font-weight:700;color:#2563eb;border-bottom:1.5px solid #2563eb;padding-bottom:4px;margin-bottom:8px;">'+d.secs.hon+'</h2>'+hh+'</div>'+sd+
-        '<div style="text-align:center;font-size:9px;color:#999;margin-top:8px;">'+gl+': '+today+' · '+d.name+'</div></div>';
-    var el=document.createElement('div');
-    el.style.cssText='position:absolute;left:-9999px;top:0;background:#fff';
-    el.innerHTML=h;
-    document.body.appendChild(el);
-    var fn=lang==='zh'?'Zijian_Cai_Resume_CN.pdf':'Zijian_Cai_Resume_EN.pdf';
-    html2pdf().set({margin:0,filename:fn,image:{type:'jpeg',quality:.98},html2canvas:{scale:2,useCORS:true,letterRendering:true},jsPDF:{unit:'mm',format:'a4',orientation:'portrait'},pagebreak:{mode:['avoid-all','css','legacy']}}).from(el.querySelector('#pdf-resume')).save().then(function(){document.body.removeChild(el)}).catch(function(){document.body.removeChild(el)});
-}
 </script>
 </body>
 </html>
