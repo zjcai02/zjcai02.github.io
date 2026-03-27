@@ -5,815 +5,187 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>蔡子健 / Zijian Cai - Personal Homepage</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            line-height: 1.8;
-            color: #333;
-            background: #f5f5f5;
-        }
-
-        /* Language Toggle Button */
-        .lang-toggle {
-            position: fixed;
-            top: 70px;
-            right: 20px;
-            z-index: 200;
-            background: #0066cc;
-            color: #fff;
-            border: none;
-            padding: 10px 18px;
-            border-radius: 25px;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: 600;
-            box-shadow: 0 2px 10px rgba(0,102,204,0.3);
-            transition: all 0.3s;
-        }
-
-        .lang-toggle:hover {
-            background: #0052a3;
-            transform: scale(1.05);
-        }
-
-        /* Navigation */
-        .masthead {
-            background: #fff;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .masthead__inner-wrap {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .nav-menu {
-            display: flex;
-            list-style: none;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        .nav-menu li {
-            padding: 15px 20px;
-        }
-
-        .nav-menu a {
-            text-decoration: none;
-            color: #555;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-
-        .nav-menu a:hover {
-            color: #0066cc;
-        }
-
-        .nav-home {
-            font-size: 1.2em;
-            font-weight: 700;
-        }
-
-        /* Main Layout */
-        .main-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 40px 20px;
-            display: flex;
-            gap: 40px;
-        }
-
-        /* Sidebar */
-        .sidebar {
-            width: 280px;
-            flex-shrink: 0;
-            position: sticky;
-            top: 80px;
-            align-self: start;
-        }
-
-        .profile-box {
-            background: #fff;
-            border-radius: 8px;
-            padding: 30px;
-            text-align: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-        }
-
-        .avatar {
-            width: 180px;
-            height: 180px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-bottom: 20px;
-            border: 4px solid #f0f0f0;
-        }
-
-        .profile-name {
-            font-size: 1.5em;
-            font-weight: 700;
-            margin-bottom: 10px;
-            color: #222;
-        }
-
-        .profile-title {
-            color: #0066cc;
-            font-weight: 500;
-            margin-bottom: 10px;
-        }
-
-        .profile-bio {
-            color: #666;
-            margin-bottom: 20px;
-            font-style: italic;
-        }
-
-        .profile-info {
-            list-style: none;
-            text-align: left;
-        }
-
-        .profile-info li {
-            padding: 10px 0;
-            border-bottom: 1px solid #eee;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .profile-info li:last-child {
-            border-bottom: none;
-        }
-
-        .profile-info i {
-            color: #0066cc;
-            width: 20px;
-        }
-
-        .profile-info a {
-            color: #333;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .profile-info a:hover {
-            color: #0066cc;
-        }
-
-        /* Content Area */
-        .content {
-            flex: 1;
-            min-width: 0;
-        }
-
-        .section {
-            background: #fff;
-            border-radius: 8px;
-            padding: 30px;
-            margin-bottom: 30px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-        }
-
-        .section-title {
-            font-size: 1.5em;
-            font-weight: 700;
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid #0066cc;
-            color: #222;
-        }
-
-        .section-title i {
-            margin-right: 10px;
-        }
-
-        /* About Me */
-        .about-text {
-            font-size: 1.05em;
-            line-height: 2;
-        }
-
-        .about-text p {
-            margin-bottom: 15px;
-        }
-
-        .highlight-box {
-            background: #f8f9fa;
-            border-left: 4px solid #0066cc;
-            padding: 15px 20px;
-            margin: 15px 0;
-            border-radius: 0 8px 8px 0;
-        }
-
-        /* News Timeline */
-        .news-list {
-            list-style: none;
-        }
-
-        .news-item {
-            padding: 15px 0;
-            border-left: 3px solid #0066cc;
-            padding-left: 20px;
-            margin-bottom: 15px;
-            position: relative;
-        }
-
-        .news-item::before {
-            content: '';
-            position: absolute;
-            left: -8px;
-            top: 20px;
-            width: 13px;
-            height: 13px;
-            background: #0066cc;
-            border-radius: 50%;
-        }
-
-        .news-date {
-            font-weight: 700;
-            color: #0066cc;
-            margin-right: 10px;
-        }
-
-        .news-tag {
-            display: inline-block;
-            background: #28a745;
-            color: #fff;
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-size: 0.8em;
-            margin-left: 8px;
-        }
-
-        .news-tag.award {
-            background: #ffc107;
-            color: #333;
-        }
-
-        /* Publications */
-        .publication-item {
-            padding: 20px 0;
-            border-bottom: 1px solid #eee;
-        }
-
-        .publication-item:last-child {
-            border-bottom: none;
-        }
-
-        .publication-venue {
-            font-weight: 700;
-            color: #0066cc;
-            margin-bottom: 5px;
-        }
-
-        .publication-venue .accepted {
-            color: #28a745;
-            font-size: 0.85em;
-        }
-
-        .publication-venue .submitted {
-            color: #ffc107;
-            font-size: 0.85em;
-        }
-
-        .publication-title {
-            font-size: 1.1em;
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
-
-        .publication-title a {
-            color: #333;
-            text-decoration: none;
-        }
-
-        .publication-title a:hover {
-            color: #0066cc;
-        }
-
-        .publication-authors {
-            color: #666;
-            font-size: 0.95em;
-        }
-
-        .publication-authors strong {
-            color: #333;
-        }
-
-        .publication-note {
-            margin-top: 10px;
-            padding: 10px;
-            background: #f8f9fa;
-            border-radius: 6px;
-            font-size: 0.9em;
-            color: #555;
-        }
-
-        /* Education & Experience */
-        .timeline-item {
-            display: flex;
-            gap: 20px;
-            padding: 20px 0;
-            border-bottom: 1px solid #eee;
-        }
-
-        .timeline-item:last-child {
-            border-bottom: none;
-        }
-
-        .timeline-date {
-            min-width: 150px;
-            font-weight: 600;
-            color: #0066cc;
-        }
-
-        .timeline-content h4 {
-            font-size: 1.1em;
-            margin-bottom: 5px;
-        }
-
-        .timeline-content .degree {
-            color: #0066cc;
-            font-weight: 500;
-        }
-
-        .timeline-content .dept {
-            color: #666;
-        }
-
-        .timeline-content .highlights {
-            margin-top: 10px;
-            padding: 10px;
-            background: #f8f9fa;
-            border-radius: 6px;
-            font-size: 0.9em;
-        }
-
-        .timeline-content .highlights li {
-            margin: 5px 0;
-            color: #555;
-        }
-
-        /* Honors */
-        .honor-item {
-            padding: 12px 0;
-            display: flex;
-            gap: 15px;
-            align-items: flex-start;
-        }
-
-        .honor-date {
-            min-width: 80px;
-            font-weight: 600;
-            color: #0066cc;
-        }
-
-        .honor-level {
-            display: inline-block;
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-size: 0.8em;
-            margin-left: 8px;
-        }
-
-        .honor-level.national {
-            background: #dc3545;
-            color: #fff;
-        }
-
-        .honor-level.international {
-            background: #6f42c1;
-            color: #fff;
-        }
-
-        /* Skills */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-        }
-
-        .skill-item {
-            background: #f8f9fa;
-            padding: 12px 15px;
-            border-radius: 8px;
-            border-left: 3px solid #0066cc;
-        }
-
-        .skill-item strong {
-            color: #0066cc;
-        }
-
-        /* Language visibility */
-        [data-lang="en"] {
-            display: none;
-        }
-
-        body.lang-en [data-lang="zh"] {
-            display: none;
-        }
-
-        body.lang-en [data-lang="en"] {
-            display: block;
-        }
-
-        body.lang-en .nav-menu span[data-lang="zh"],
-        body.lang-en .profile-name span[data-lang="zh"],
-        body.lang-en .profile-bio span[data-lang="zh"],
-        body.lang-en .profile-title span[data-lang="zh"] {
-            display: none;
-        }
-
-        body.lang-en .nav-menu span[data-lang="en"],
-        body.lang-en .profile-name span[data-lang="en"],
-        body.lang-en .profile-bio span[data-lang="en"],
-        body.lang-en .profile-title span[data-lang="en"] {
-            display: inline;
-        }
-
-        /* Responsive */
-        @media (max-width: 900px) {
-            .main-content {
-                flex-direction: column;
-            }
-
-            .sidebar {
-                width: 100%;
-                position: relative;
-                top: 0;
-            }
-
-            .profile-box {
-                text-align: center;
-            }
-
-            .profile-info {
-                text-align: left;
-            }
-
-            .lang-toggle {
-                top: auto;
-                bottom: 20px;
-            }
-        }
-
-        @media (max-width: 600px) {
-            .nav-menu {
-                justify-content: center;
-            }
-
-            .nav-menu li {
-                padding: 10px 15px;
-            }
-
-            .timeline-item {
-                flex-direction: column;
-                gap: 5px;
-            }
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.8; color: #333; background: #f5f5f5; }
+        .lang-toggle { position: fixed; top: 70px; right: 20px; z-index: 200; background: #0066cc; color: #fff; border: none; padding: 10px 18px; border-radius: 25px; cursor: pointer; font-size: 14px; font-weight: 600; box-shadow: 0 2px 10px rgba(0,102,204,0.3); transition: all 0.3s; }
+        .lang-toggle:hover { background: #0052a3; transform: scale(1.05); }
+        .masthead { background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 100; }
+        .masthead__inner-wrap { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .nav-menu { display: flex; list-style: none; align-items: center; flex-wrap: wrap; }
+        .nav-menu li { padding: 15px 20px; }
+        .nav-menu a { text-decoration: none; color: #555; font-weight: 500; transition: color 0.3s; }
+        .nav-menu a:hover { color: #0066cc; }
+        .nav-home { font-size: 1.2em; font-weight: 700; }
+        .main-content { max-width: 1200px; margin: 0 auto; padding: 40px 20px; display: flex; gap: 40px; }
+        .sidebar { width: 280px; flex-shrink: 0; position: sticky; top: 80px; align-self: start; }
+        .profile-box { background: #fff; border-radius: 8px; padding: 30px; text-align: center; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+        .avatar { width: 180px; height: 180px; border-radius: 50%; object-fit: cover; margin-bottom: 20px; border: 4px solid #f0f0f0; }
+        .profile-name { font-size: 1.5em; font-weight: 700; margin-bottom: 10px; color: #222; }
+        .profile-title { color: #0066cc; font-weight: 500; margin-bottom: 10px; }
+        .profile-bio { color: #666; margin-bottom: 20px; font-style: italic; }
+        .profile-info { list-style: none; text-align: left; }
+        .profile-info li { padding: 10px 0; border-bottom: 1px solid #eee; display: flex; align-items: center; gap: 10px; }
+        .profile-info li:last-child { border-bottom: none; }
+        .profile-info i { color: #0066cc; width: 20px; }
+        .profile-info a { color: #333; text-decoration: none; transition: color 0.3s; }
+        .profile-info a:hover { color: #0066cc; }
+        .content { flex: 1; min-width: 0; }
+        .section { background: #fff; border-radius: 8px; padding: 30px; margin-bottom: 30px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+        .section-title { font-size: 1.5em; font-weight: 700; margin-bottom: 20px; padding-bottom: 15px; border-bottom: 2px solid #0066cc; color: #222; }
+        .section-title i { margin-right: 10px; }
+        .about-text { font-size: 1.05em; line-height: 2; }
+        .about-text p { margin-bottom: 15px; }
+        .highlight-box { background: #f8f9fa; border-left: 4px solid #0066cc; padding: 15px 20px; margin: 15px 0; border-radius: 0 8px 8px 0; }
+        .news-list { list-style: none; }
+        .news-item { padding: 15px 0; border-left: 3px solid #0066cc; padding-left: 20px; margin-bottom: 15px; position: relative; }
+        .news-item::before { content: ''; position: absolute; left: -8px; top: 20px; width: 13px; height: 13px; background: #0066cc; border-radius: 50%; }
+        .news-date { font-weight: 700; color: #0066cc; margin-right: 10px; }
+        .news-tag { display: inline-block; background: #28a745; color: #fff; padding: 2px 8px; border-radius: 4px; font-size: 0.8em; margin-left: 8px; }
+        .news-tag.award { background: #ffc107; color: #333; }
+        .publication-item { padding: 20px 0; border-bottom: 1px solid #eee; }
+        .publication-item:last-child { border-bottom: none; }
+        .publication-venue { font-weight: 700; color: #0066cc; margin-bottom: 5px; }
+        .publication-venue .accepted { color: #28a745; font-size: 0.85em; }
+        .publication-venue .submitted { color: #ffc107; font-size: 0.85em; }
+        .publication-title { font-size: 1.1em; font-weight: 600; margin-bottom: 10px; }
+        .publication-title a { color: #333; text-decoration: none; }
+        .publication-title a:hover { color: #0066cc; }
+        .publication-authors { color: #666; font-size: 0.95em; }
+        .publication-authors strong { color: #333; }
+        .publication-note { margin-top: 10px; padding: 10px; background: #f8f9fa; border-radius: 6px; font-size: 0.9em; color: #555; }
+        .timeline-item { display: flex; gap: 20px; padding: 20px 0; border-bottom: 1px solid #eee; }
+        .timeline-item:last-child { border-bottom: none; }
+        .timeline-date { min-width: 150px; font-weight: 600; color: #0066cc; }
+        .timeline-content h4 { font-size: 1.1em; margin-bottom: 5px; }
+        .timeline-content .degree { color: #0066cc; font-weight: 500; }
+        .timeline-content .dept { color: #666; }
+        .timeline-content .highlights { margin-top: 10px; padding: 10px; background: #f8f9fa; border-radius: 6px; font-size: 0.9em; }
+        .timeline-content .highlights li { margin: 5px 0; color: #555; }
+        .honor-item { padding: 12px 0; display: flex; gap: 15px; align-items: flex-start; }
+        .honor-date { min-width: 80px; font-weight: 600; color: #0066cc; }
+        .honor-level { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 0.8em; margin-left: 8px; }
+        .honor-level.national { background: #dc3545; color: #fff; }
+        .honor-level.international { background: #6f42c1; color: #fff; }
+        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; }
+        .skill-item { background: #f8f9fa; padding: 12px 15px; border-radius: 8px; border-left: 3px solid #0066cc; }
+        .skill-item strong { color: #0066cc; }
+        [data-lang="en"] { display: none; }
+        body.lang-en [data-lang="zh"] { display: none; }
+        body.lang-en [data-lang="en"] { display: block; }
+        body.lang-en .nav-menu span[data-lang="zh"], body.lang-en .profile-name span[data-lang="zh"], body.lang-en .profile-bio span[data-lang="zh"], body.lang-en .profile-title span[data-lang="zh"] { display: none; }
+        body.lang-en .nav-menu span[data-lang="en"], body.lang-en .profile-name span[data-lang="en"], body.lang-en .profile-bio span[data-lang="en"], body.lang-en .profile-title span[data-lang="en"] { display: inline; }
+        @media (max-width: 900px) { .main-content { flex-direction: column; } .sidebar { width: 100%; position: relative; top: 0; } .profile-box { text-align: center; } .profile-info { text-align: left; } .lang-toggle { top: auto; bottom: 20px; } }
+        @media (max-width: 600px) { .nav-menu { justify-content: center; } .nav-menu li { padding: 10px 15px; } .timeline-item { flex-direction: column; gap: 5px; } }
     </style>
 </head>
 <body>
-    <!-- Language Toggle Button -->
-    <button class="lang-toggle" onclick="toggleLanguage()">
-        <span data-lang="zh">English</span>
-        <span data-lang="en">中文</span>
-    </button>
-
-    <!-- Navigation -->
+    <button class="lang-toggle" onclick="toggleLanguage()"><span data-lang="zh">English</span><span data-lang="en">中文</span></button>
     <nav class="masthead">
         <div class="masthead__inner-wrap">
             <ul class="nav-menu">
-                <li class="nav-home">
-                    <a href="#about">
-                        <span data-lang="zh">主页</span>
-                        <span data-lang="en">Home</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#about">
-                        <span data-lang="zh">关于我</span>
-                        <span data-lang="en">About</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#news">
-                        <span data-lang="zh">动态</span>
-                        <span data-lang="en">News</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#publications">
-                        <span data-lang="zh">论文发表</span>
-                        <span data-lang="en">Publications</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#honors">
-                        <span data-lang="zh">荣誉奖项</span>
-                        <span data-lang="en">Honors</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#education">
-                        <span data-lang="zh">教育经历</span>
-                        <span data-lang="en">Education</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#experience">
-                        <span data-lang="zh">实习经历</span>
-                        <span data-lang="en">Experience</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="javascript:void(0)" onclick="exportPDF()" style="color: #28a745;">
-                        <i class="fas fa-download"></i> <span data-lang="zh">导出PDF</span><span data-lang="en">Export PDF</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="javascript:void(0)" onclick="openEditor()" style="color: #0066cc;">
-                        <i class="fas fa-edit"></i> <span data-lang="zh">编辑</span><span data-lang="en">Edit</span>
-                    </a>
-                </li>
+                <li class="nav-home"><a href="#about"><span data-lang="zh">主页</span><span data-lang="en">Home</span></a></li>
+                <li><a href="#about"><span data-lang="zh">关于我</span><span data-lang="en">About</span></a></li>
+                <li><a href="#news"><span data-lang="zh">动态</span><span data-lang="en">News</span></a></li>
+                <li><a href="#publications"><span data-lang="zh">论文发表</span><span data-lang="en">Publications</span></a></li>
+                <li><a href="#honors"><span data-lang="zh">荣誉奖项</span><span data-lang="en">Honors</span></a></li>
+                <li><a href="#education"><span data-lang="zh">教育经历</span><span data-lang="en">Education</span></a></li>
+                <li><a href="#experience"><span data-lang="zh">实习经历</span><span data-lang="en">Experience</span></a></li>
+                <li><a href="javascript:void(0)" onclick="exportPDF()" style="color: #28a745;"><i class="fas fa-download"></i> <span data-lang="zh">导出PDF</span><span data-lang="en">Export PDF</span></a></li>
             </ul>
         </div>
     </nav>
-
-    <!-- Main Content -->
     <div class="main-content">
-        <!-- Sidebar -->
         <aside class="sidebar">
             <div class="profile-box">
                 <img src="img/avatar.jpg" alt="Zijian Cai" class="avatar" onerror="this.src='https://via.placeholder.com/180x180/4a90e2/ffffff?text=ZC'">
-                <h2 class="profile-name">
-                    <span data-lang="zh">蔡子健</span>
-                    <span data-lang="en">Zijian Cai</span>
-                </h2>
-                <p class="profile-title">
-                    <span data-lang="zh">中国科学技术大学 · 硕士研究生</span>
-                    <span data-lang="en">USTC · Master's Student</span>
-                </p>
-                <p class="profile-bio">
-                    <span data-lang="zh">具身智能 · 3D感知 · 深度学习</span>
-                    <span data-lang="en">Embodied AI · 3D Perception · Deep Learning</span>
-                </p>
+                <h2 class="profile-name"><span data-lang="zh">蔡子健</span><span data-lang="en">Zijian Cai</span></h2>
+                <p class="profile-title"><span data-lang="zh">中国科学技术大学 · 硕士研究生</span><span data-lang="en">USTC · Master's Student</span></p>
+                <p class="profile-bio"><span data-lang="zh">多模态大模型 · 3D感知 · 具身智能</span><span data-lang="en">MLLM · 3D Perception · Embodied AI</span></p>
                 <ul class="profile-info">
-                    <li>
-                        <i class="fas fa-map-marker-alt"></i>
-                        <span data-lang="zh">安徽合肥</span>
-                        <span data-lang="en">Hefei, China</span>
-                    </li>
-                    <li>
-                        <i class="fas fa-envelope"></i>
-                        <a href="mailto:zjcai@mail.ustc.edu.cn">zjcai@mail.ustc.edu.cn</a>
-                    </li>
-                    <li>
-                        <i class="fas fa-phone"></i>
-                        <a href="tel:19862855610">19862855610</a>
-                    </li>
-                    <li>
-                        <i class="fab fa-github"></i>
-                        <a href="https://github.com/Chase-Arthur" target="_blank">GitHub</a>
-                    </li>
+                    <li><i class="fas fa-map-marker-alt"></i><span data-lang="zh">安徽合肥</span><span data-lang="en">Hefei, China</span></li>
+                    <li><i class="fas fa-envelope"></i><a href="mailto:zjcai@mail.ustc.edu.cn">zjcai@mail.ustc.edu.cn</a></li>
+                    <li><i class="fas fa-envelope"></i><a href="mailto:1084734352@qq.com">1084734352@qq.com</a></li>
+                    <li><i class="fas fa-phone"></i><a href="tel:19862855610">19862855610</a></li>
+                    <li><i class="fab fa-github"></i><a href="https://github.com/Chase-Arthur" target="_blank">GitHub</a></li>
                 </ul>
             </div>
         </aside>
-
-        <!-- Content -->
         <main class="content">
-            <!-- About Me -->
             <section id="about" class="section">
-                <h2 class="section-title">
-                    <i class="fas fa-user"></i>
-                    <span data-lang="zh">关于我</span>
-                    <span data-lang="en">About Me</span>
-                </h2>
+                <h2 class="section-title"><i class="fas fa-user"></i><span data-lang="zh">关于我</span><span data-lang="en">About Me</span></h2>
                 <div class="about-text">
-                    <p data-lang="zh">
-                        我是蔡子健，目前是中国科学技术大学自动化系的硕士研究生，研究方向主要聚焦于<strong>MLLM</strong>和<strong>具身智能</strong>。
-                    </p>
-                    <p data-lang="en">
-                        Hello! I'm Zijian Cai, currently a Master's student at the University of Science and Technology of China (USTC). My research interests focus on <strong>Embodied AI</strong>, <strong>3D Perception</strong>, and <strong>Deep Learning</strong>.
-                    </p>
+                    <p data-lang="zh">我是蔡子健，目前是中国科学技术大学自动化系的硕士研究生，研究方向主要聚焦于<strong>多模态大模型（MLLM）</strong>和<strong>具身智能</strong>。曾在蔚来汽车从事MLLM算法研发，参与图像检测与视频理解能力的提升工作。</p>
+                    <p data-lang="en">Hello! I'm Zijian Cai, currently a Master's student at the University of Science and Technology of China (USTC). My research interests focus on <strong>Multimodal Large Language Models (MLLM)</strong> and <strong>Embodied AI</strong>. I previously worked at NIO on MLLM algorithm development for image detection and video understanding.</p>
                     <div class="highlight-box">
-                        <p data-lang="zh"><strong>研究方向：</strong>mllm、在线3D感知、时序建模、跨模态学习</p>
-                        <p data-lang="en"><strong>Research Interests:</strong>mllm、3D Instance Segmentation, Online 3D Perception, Temporal Modeling, Cross-modal Learning</p>
+                        <p data-lang="zh"><strong>研究方向：</strong>多模态大模型（MLLM）、3D实例分割、在线3D感知、具身智能、时序建模</p>
+                        <p data-lang="en"><strong>Research Interests:</strong> MLLM, 3D Instance Segmentation, Online 3D Perception, Embodied AI, Temporal Modeling</p>
                     </div>
-                    <p data-lang="zh">
-                        本科毕业于中国石油大学（华东）计算机科学与技术专业，以专业排名 <strong>4/118</strong> 的优异成绩推免至中科大。在学术研究方面，已在 NeurIPS、ICASSP 等顶级会议发表论文。
-                    </p>
-                    <p data-lang="en">
-                        I received my Bachelor's degree in Computer Science from China University of Petroleum (East China), ranking <strong>4/118</strong> in my major. I have published papers in top-tier conferences including NeurIPS and ICASSP.
-                    </p>
+                    <p data-lang="zh">本科毕业于中国石油大学（华东）计算机科学与技术专业，以专业排名 <strong>4/118</strong> 的优异成绩推免至中科大。在学术研究方面，已在 NeurIPS、ICASSP 等顶级会议发表论文。</p>
+                    <p data-lang="en">I received my Bachelor's degree in Computer Science from China University of Petroleum (East China), ranking <strong>4/118</strong> in my major. I have published papers in top-tier conferences including NeurIPS and ICASSP.</p>
                 </div>
             </section>
-
-            <!-- News -->
             <section id="news" class="section">
-                <h2 class="section-title">
-                    <i class="fas fa-bullhorn"></i>
-                    <span data-lang="zh">最新动态</span>
-                    <span data-lang="en">Latest News</span>
-                </h2>
+                <h2 class="section-title"><i class="fas fa-bullhorn"></i><span data-lang="zh">最新动态</span><span data-lang="en">Latest News</span></h2>
                 <ul class="news-list">
-                    <li class="news-item">
-                        <span class="news-date">2026.03</span>
-                        <span data-lang="zh">论文被 ICASSP 2026接收</span>
-                        <span data-lang="en">Paper SEFO submitted to ICASSP 2026</span>
-                        <span class="news-tag award">Accepted</span>
-                    </li>
-                    <li class="news-item">
-                        <span class="news-date">2025.10</span>
-                        <span data-lang="zh">论文被 NeurIPS 2026 接收</span>
-                        <span data-lang="en">Paper accepted to NeurIPS 2026</span>
-                        <span class="news-tag award">Accepted</span>
-                    </li>
-                    <li class="news-item">
-                        <span class="news-date">2025.09</span>
-                        <span data-lang="zh">获得中科大学业一等奖学金</span>
-                        <span data-lang="en">Received USTC Academic Excellence Scholarship</span>
-                    </li>
-                    <li class="news-item">
-                        <span class="news-date">2024.09</span>
-                        <span data-lang="zh">获得中科大学业一等奖学金</span>
-                        <span data-lang="en">Received USTC Academic Excellence Scholarship</span>
-                    </li>
-                    <li class="news-item">
-                        <span class="news-date">2024.09</span>
-                        <span data-lang="zh">进入中国科学技术大学攻读硕士</span>
-                        <span data-lang="en">Started Master's program at USTC</span>
-                    </li>
+                    <li class="news-item"><span class="news-date">2026.03</span><span data-lang="zh">论文被 ICASSP 2026 接收</span><span data-lang="en">Paper accepted by ICASSP 2026</span><span class="news-tag award">Accepted</span></li>
+                    <li class="news-item"><span class="news-date">2025.11</span><span data-lang="zh">加入蔚来汽车，任多模态大模型算法实习生</span><span data-lang="en">Joined NIO as Multimodal LLM Algorithm Intern</span><span class="news-tag">Internship</span></li>
+                    <li class="news-item"><span class="news-date">2025.10</span><span data-lang="zh">论文被 NeurIPS 2026 接收</span><span data-lang="en">Paper accepted to NeurIPS 2026</span><span class="news-tag award">Accepted</span></li>
+                    <li class="news-item"><span class="news-date">2025.06</span><span data-lang="zh">加入联想集团，任3D算法实习生</span><span data-lang="en">Joined Lenovo as 3D Algorithm Intern</span><span class="news-tag">Internship</span></li>
+                    <li class="news-item"><span class="news-date">2024.09</span><span data-lang="zh">获得中科大学业一等奖学金</span><span data-lang="en">Received USTC Academic Excellence Scholarship</span></li>
+                    <li class="news-item"><span class="news-date">2024.09</span><span data-lang="zh">进入中国科学技术大学攻读硕士</span><span data-lang="en">Started Master's program at USTC</span></li>
                 </ul>
             </section>
-
-            <!-- Publications -->
             <section id="publications" class="section">
-                <h2 class="section-title">
-                    <i class="fas fa-file-alt"></i>
-                    <span data-lang="zh">论文发表</span>
-                    <span data-lang="en">Publications</span>
-                </h2>
-                
+                <h2 class="section-title"><i class="fas fa-file-alt"></i><span data-lang="zh">论文发表</span><span data-lang="en">Publications</span></h2>
                 <div class="publication-item">
-                    <div class="publication-venue">
-                        NeurIPS 2026
-                        <span class="accepted">✓ Accepted</span>
-                    </div>
-                    <div class="publication-title">
-                        <a href="https://openreview.net/pdf?id=qu7swcInlt" target="_blank">
-                            Online Segment Any 3D Thing as Instance Tracking
-                        </a>
-                    </div>
-                    <div class="publication-authors">
-                        <span data-lang="zh">第二作者</span>
-                        <span data-lang="en">Second Author</span> · <strong data-lang="zh">蔡子健</strong><strong data-lang="en">Zijian Cai</strong>
-                    </div>
+                    <div class="publication-venue">NeurIPS 2026 <span class="accepted">✓ Accepted</span></div>
+                    <div class="publication-title"><a href="https://openreview.net/pdf?id=qu7swcInlt" target="_blank">Online Segment Any 3D Thing as Instance Tracking</a></div>
+                    <div class="publication-authors"><span data-lang="zh">第二作者</span><span data-lang="en">Second Author</span> · <strong data-lang="zh">蔡子健</strong><strong data-lang="en">Zijian Cai</strong></div>
                     <div class="publication-note">
-                        <span data-lang="zh">
-                            <strong>贡献：</strong>将在线3D分割重新定义为实例跟踪问题，引入空间一致性学习解决跨帧掩码一致性问题，效果较SOTA方法AP提升2.8%。负责论文引言、实验、方法部分及所有可视化。
-                        </span>
-                        <span data-lang="en">
-                            <strong>Contribution:</strong> Reformulated online 3D segmentation as instance tracking, introduced spatial consistency learning for cross-frame mask consistency. Achieved 2.8% AP improvement over SOTA. Responsible for introduction, experiments, methods, and all visualizations.
-                        </span>
+                        <span data-lang="zh"><strong>贡献：</strong>将在线3D分割重新定义为实例跟踪问题，引入空间一致性学习解决跨帧掩码一致性问题，效果较SOTA方法AP提升2.8%。负责论文引言、实验、方法部分及所有可视化。</span>
+                        <span data-lang="en"><strong>Contribution:</strong> Reformulated online 3D segmentation as instance tracking, introduced spatial consistency learning for cross-frame mask consistency. Achieved 2.8% AP improvement over SOTA. Responsible for introduction, experiments, methods, and all visualizations.</span>
                     </div>
                 </div>
-
                 <div class="publication-item">
-                    <div class="publication-venue">
-                        ICASSP 2026
-                        <span class="submitted">⏳ Submitted</span>
-                    </div>
-                    <div class="publication-title">
-                        <a href="#">
-                            SEFO: Semantic-Enhanced Fusion for Online 3D Instance Segmentation
-                        </a>
-                    </div>
-                    <div class="publication-authors">
-                        <span data-lang="zh">第一作者</span>
-                        <span data-lang="en">First Author</span> · <strong data-lang="zh">蔡子健</strong><strong data-lang="en">Zijian Cai</strong>
-                    </div>
+                    <div class="publication-venue">ICASSP 2026 <span class="accepted">✓ Accepted</span></div>
+                    <div class="publication-title"><a href="#">SEFO: Semantic-Enhanced Fusion for Online 3D Instance Segmentation</a></div>
+                    <div class="publication-authors"><span data-lang="zh">第一作者</span><span data-lang="en">First Author</span> · <strong data-lang="zh">蔡子健</strong><strong data-lang="en">Zijian Cai</strong></div>
                     <div class="publication-note">
-                        <span data-lang="zh">
-                            <strong>贡献：</strong>提出层次融合框架，结合point-level与SAM pixel-level交互保证几何理解，采用instance-level与CLIP center-pixel交互解决外参不准确时的噪声问题。跨模态类别对齐机制使方法较SOTA在ScanNet数据集AP提升1.4%。
-                        </span>
-                        <span data-lang="en">
-                            <strong>Contribution:</strong> Proposed hierarchical fusion framework combining point-level and SAM pixel-level interactions for geometric understanding. Cross-modal category alignment achieved 1.4% AP improvement over SOTA on ScanNet.
-                        </span>
+                        <span data-lang="zh"><strong>贡献：</strong>提出语义增强层次融合框架，结合point-level与SAM pixel-level交互保证几何理解，采用instance-level与CLIP center-pixel交互解决外参不准确时的噪声问题。设计跨模态类别对齐机制，使方法较SOTA在ScanNet数据集AP提升1.4%。</span>
+                        <span data-lang="en"><strong>Contribution:</strong> Proposed semantic-enhanced hierarchical fusion framework combining point-level and SAM pixel-level interactions for geometric understanding, and instance-level with CLIP center-pixel interactions to handle noisy extrinsics. Cross-modal category alignment achieved 1.4% AP improvement over SOTA on ScanNet.</span>
                     </div>
                 </div>
             </section>
-
-            <!-- Honors -->
             <section id="honors" class="section">
-                <h2 class="section-title">
-                    <i class="fas fa-trophy"></i>
-                    <span data-lang="zh">荣誉奖项</span>
-                    <span data-lang="en">Honors & Awards</span>
-                </h2>
-                
-                <div class="honor-item">
-                    <span class="honor-date">2024</span>
-                    <div>
-                        <span data-lang="zh">中国科学技术大学 学业一等奖学金</span>
-                        <span data-lang="en">USTC Academic Excellence Scholarship (First Prize)</span>
-                    </div>
-                </div>
-                
-                <div class="honor-item">
-                    <span class="honor-date">2023</span>
-                    <div>
-                        <span data-lang="zh">中国大学生计算机设计大赛 国家一等奖</span>
-                        <span data-lang="en">Chinese University Student Computer Design Competition - National First Prize</span>
-                        <span class="honor-level national">National</span>
-                    </div>
-                </div>
-
-                <div class="honor-item">
-                    <span class="honor-date">2023</span>
-                    <div>
-                        <span data-lang="zh">中国高校计算机大赛 国家三等奖</span>
-                        <span data-lang="en">China Collegiate Computing Contest - National Third Prize</span>
-                        <span class="honor-level national">National</span>
-                    </div>
-                </div>
-
-                <div class="honor-item">
-                    <span class="honor-date">2023</span>
-                    <div>
-                        <span data-lang="zh">中国大学生服务外包创新创业大赛 国家三等奖</span>
-                        <span data-lang="en">China Service Outsourcing Innovation Competition - National Third Prize</span>
-                        <span class="honor-level national">National</span>
-                    </div>
-                </div>
-
-                <div class="honor-item">
-                    <span class="honor-date">2023</span>
-                    <div>
-                        <span data-lang="zh">美国大学生数学建模竞赛 特等奖提名奖（F奖，0.2%）</span>
-                        <span data-lang="en">MCM/ICM - Finalist Award (F奖, Top 0.2%)</span>
-                        <span class="honor-level international">International</span>
-                    </div>
-                </div>
-
-                <div class="honor-item">
-                    <span class="honor-date">2024</span>
-                    <div>
-                        <span data-lang="zh">创新创业卓越之星奖学金（全校本硕博20人）</span>
-                        <span data-lang="en">Innovation & Entrepreneurship Star Scholarship (Top 20 among all students)</span>
-                    </div>
-                </div>
-
-                <div class="honor-item">
-                    <span class="honor-date">2024</span>
-                    <div>
-                        <span data-lang="zh">国家励志奖学金、荣誉学士学位</span>
-                        <span data-lang="en">National Endeavor Scholarship, Honorary Bachelor's Degree</span>
-                    </div>
-                </div>
+                <h2 class="section-title"><i class="fas fa-trophy"></i><span data-lang="zh">荣誉奖项</span><span data-lang="en">Honors & Awards</span></h2>
+                <div class="honor-item"><span class="honor-date">2024</span><div><span data-lang="zh">创新创业卓越之星奖学金（全校本硕博20人）</span><span data-lang="en">Innovation & Entrepreneurship Star Scholarship (Top 20 among all students)</span></div></div>
+                <div class="honor-item"><span class="honor-date">2024</span><div><span data-lang="zh">中国科学技术大学 学业一等奖学金</span><span data-lang="en">USTC Academic Excellence Scholarship (First Prize)</span></div></div>
+                <div class="honor-item"><span class="honor-date">2024</span><div><span data-lang="zh">国家励志奖学金、荣誉学士学位</span><span data-lang="en">National Endeavor Scholarship, Honorary Bachelor's Degree</span></div></div>
+                <div class="honor-item"><span class="honor-date">2023.08</span><div><span data-lang="zh">中国大学生计算机设计大赛 国家一等奖</span><span data-lang="en">Chinese University Student Computer Design Competition - National First Prize</span><span class="honor-level national">National</span></div></div>
+                <div class="honor-item"><span class="honor-date">2023.09</span><div><span data-lang="zh">中国高校计算机大赛 国家三等奖</span><span data-lang="en">China Collegiate Computing Contest - National Third Prize</span><span class="honor-level national">National</span></div></div>
+                <div class="honor-item"><span class="honor-date">2023.03</span><div><span data-lang="zh">美国大学生数学建模竞赛 特等奖提名（F奖，Top 0.2%）</span><span data-lang="en">MCM/ICM - Finalist Award (F Prize, Top 0.2%)</span><span class="honor-level international">International</span></div></div>
             </section>
-
-            <!-- Education -->
             <section id="education" class="section">
-                <h2 class="section-title">
-                    <i class="fas fa-graduation-cap"></i>
-                    <span data-lang="zh">教育经历</span>
-                    <span data-lang="en">Education</span>
-                </h2>
-                
+                <h2 class="section-title"><i class="fas fa-graduation-cap"></i><span data-lang="zh">教育经历</span><span data-lang="en">Education</span></h2>
                 <div class="timeline-item">
                     <div class="timeline-date">2024.09 - <span data-lang="zh">至今</span><span data-lang="en">Present</span></div>
                     <div class="timeline-content">
                         <h4><span data-lang="zh">中国科学技术大学</span><span data-lang="en">University of Science and Technology of China (USTC)</span></h4>
-                        <p class="degree">
-                            <span data-lang="zh">电子信息科学与技术（推免）· 硕士 · 自动化系</span>
-                            <span data-lang="en">Electronic Information Science & Technology · Master · Dept. of Automation</span>
-                        </p>
-                        <p class="dept"><span data-lang="zh">985工程 · 安徽合肥</span><span data-lang="en">985 Project · Hefei, China</span></p>
+                        <p class="degree"><span data-lang="zh">电子信息科学与技术（推免） · 硕士 · 自动化系</span><span data-lang="en">Electronic Information Science & Technology · Master · Dept. of Automation</span></p>
+                        <p class="dept"><span data-lang="zh">985工程 · 安徽合肥 · 预计2027年6月毕业</span><span data-lang="en">985 Project · Hefei, China · Expected Graduation: June 2027</span></p>
                         <ul class="highlights">
+                            <li data-lang="zh">排名47/160（前30%）</li>
+                            <li data-lang="en">Ranking: 47/160 (Top 30%)</li>
                             <li data-lang="zh">学业一等奖学金</li>
                             <li data-lang="en">Academic Excellence Scholarship (First Prize)</li>
                         </ul>
                     </div>
                 </div>
-
                 <div class="timeline-item">
                     <div class="timeline-date">2020.09 - 2024.06</div>
                     <div class="timeline-content">
                         <h4><span data-lang="zh">中国石油大学（华东）</span><span data-lang="en">China University of Petroleum (East China)</span></h4>
-                        <p class="degree">
-                            <span data-lang="zh">计算机科学与技术 · 本科 · 计算机系</span>
-                            <span data-lang="en">Computer Science · Bachelor · Dept. of Computer Science</span>
-                        </p>
+                        <p class="degree"><span data-lang="zh">计算机科学与技术 · 本科 · 计算机系</span><span data-lang="en">Computer Science · Bachelor · Dept. of Computer Science</span></p>
                         <p class="dept"><span data-lang="zh">211工程 · 山东青岛</span><span data-lang="en">211 Project · Qingdao, China</span></p>
                         <ul class="highlights">
                             <li><span data-lang="zh">GPA：3.5/4.0 · 专业排名：4/118</span><span data-lang="en">GPA: 3.5/4.0 · Ranking: 4/118</span></li>
@@ -824,226 +196,200 @@
                     </div>
                 </div>
             </section>
-
-            <!-- Experience -->
             <section id="experience" class="section">
-                <h2 class="section-title">
-                    <i class="fas fa-briefcase"></i>
-                    <span data-lang="zh">实习经历</span>
-                    <span data-lang="en">Internship</span>
-                </h2>
-                
+                <h2 class="section-title"><i class="fas fa-briefcase"></i><span data-lang="zh">实习经历</span><span data-lang="en">Internship</span></h2>
                 <div class="timeline-item">
-                    <div class="timeline-date">2025.11 - 2026.04</div>
+                    <div class="timeline-date">2025.11 - 2026.03</div>
                     <div class="timeline-content">
                         <h4>NIO 蔚来</h4>
-                        <p class="degree"><span data-lang="zh">大模型算法实习生 · 蔚来座舱</span><span data-lang="en">LLM Algorithm Intern · NIO Cockpit</span></p>
+                        <p class="degree"><span data-lang="zh">多模态大模型算法实习生 · 蔚来座舱</span><span data-lang="en">Multimodal LLM Algorithm Intern · NIO Cockpit</span></p>
                         <ul class="highlights">
-                            <li data-lang="zh">
-                                <strong>大模型检测能力提升：</strong>针对MLLM在检测任务中坐标以文本形式生成导致输出格式不一致等痛点，进行深入文献调研与实验分析
-                            </li>
-                            <li data-lang="en">
-                                <strong>MLLM Detection:</strong> Conducted research on coordinate generation issues in MLLM detection tasks
-                            </li>
-                            <li data-lang="zh">
-                                <strong>架构设计：</strong>提出基于视觉令牌（Visual Token）的MLLM架构，将Patch特征经轻量级投影后拼接至文本词表，使模型直接输出视觉Token作为检测结果
-                            </li>
-                            <li data-lang="en">
-                                <strong>Architecture:</strong> Proposed Visual Token-based MLLM architecture with lightweight projection to text vocabulary
-                            </li>
-                            <li data-lang="zh">
-                                <strong>业务落地：</strong>在座舱数据集上将AP50从40.6提升至45.9，已在"蔚来守卫大模型4.0"上线
-                            </li>
-                            <li data-lang="en">
-                                <strong>Impact:</strong> Improved AP50 from 40.6 to 45.9, deployed in "NIO Guardian LLM 4.0"
-                            </li>
+                            <li data-lang="zh"><strong>MLLM图像检测能力提升：</strong>设计基于Visual Reference Token的MLLM架构，AP50从40.6提升至45.9，已部署于"Cedar雪松1.4.0"版本，覆盖蔚来新ES6、新EC6等4款量产车型</li>
+                            <li data-lang="en"><strong>MLLM Image Detection:</strong> Designed Visual Reference Token-based MLLM architecture; improved AP50 from 40.6 to 45.9; deployed in "Cedar 1.4.0" covering 4 mass-production models including ES6 and EC6</li>
+                            <li data-lang="zh"><strong>MLLM视频理解能力提升：</strong>通过GRPO强化学习微调自有MLLM，行为识别准确率从64%提升至73%；构建因果驱动的视频异常数据集</li>
+                            <li data-lang="en"><strong>MLLM Video Understanding:</strong> Fine-tuned proprietary MLLM via GRPO reinforcement learning; improved action recognition accuracy from 64% to 73%; built causality-driven video anomaly dataset</li>
                         </ul>
                     </div>
                 </div>
-                
+                <div class="timeline-item">
+                    <div class="timeline-date">2025.06 - 2025.09</div>
+                    <div class="timeline-content">
+                        <h4><span data-lang="zh">联想集团 Lenovo</span><span data-lang="en">Lenovo Group</span></h4>
+                        <p class="degree"><span data-lang="zh">3D算法实习生</span><span data-lang="en">3D Algorithm Intern</span></p>
+                        <ul class="highlights">
+                            <li data-lang="zh"><strong>点云分割算法研发：</strong>开发基于深度相机的点云感知模块，实现笔记本电脑多姿态高精度轮廓提取</li>
+                            <li data-lang="en"><strong>Point Cloud Segmentation:</strong> Developed depth camera-based point cloud perception module for high-precision multi-pose laptop contour extraction</li>
+                            <li data-lang="zh"><strong>复杂场景鲁棒性优化：</strong>设计Top-K簇合并策略，感知成功率从70%提升至95%</li>
+                            <li data-lang="en"><strong>Robustness Optimization:</strong> Designed Top-K cluster merging strategy; improved perception success rate from 70% to 95%</li>
+                            <li data-lang="zh"><strong>测试保障：</strong>为联想25款小新、拯救者、ThinkPad等系列产品提供测试保障</li>
+                            <li data-lang="en"><strong>Testing Coverage:</strong> Provided testing support for 25 Lenovo product lines including Xiaoxin, Legion, and ThinkPad series</li>
+                        </ul>
+                    </div>
+                </div>
                 <div class="timeline-item">
                     <div class="timeline-date">2024.09 - 2024.12</div>
                     <div class="timeline-content">
                         <h4>Momenta</h4>
                         <p class="degree"><span data-lang="zh">路测实习生 · AEB（Autonomous Emergency Braking）</span><span data-lang="en">Road Test Intern · AEB (Autonomous Emergency Braking)</span></p>
                         <ul class="highlights">
-                            <li data-lang="zh">
-                                <strong>数采方案设计：</strong>完成上汽智己L6、日产N7、埃安RT等车型AEB功能道路数据采集方案设计，覆盖6类核心场景，明确12项采集指标，累计支撑1000+km有效数据采集
-                            </li>
-                            <li data-lang="en">
-                                <strong>Data Collection:</strong> Designed AEB road test data collection for IM Motors L6, Nissan N7, and Aion RT; covered 6 core scenarios with 12 metrics; supported 1000+ km of effective data collection
-                            </li>
-                            <li data-lang="zh">
-                                <strong>测试执行：</strong>完成400+次场景验证，重点针对"鬼探头"、交叉路口冲突等corner case，精准定位近70个问题，推动20余次功能迭代优化
-                            </li>
-                            <li data-lang="en">
-                                <strong>Testing:</strong> Completed 400+ scenario validations focusing on corner cases; identified ~70 issues and drove 20+ iterations
-                            </li>
+                            <li data-lang="zh"><strong>数采方案设计：</strong>完成上汽智己L6、日产N7、埃安RT等车型AEB功能道路数据采集方案设计，覆盖6类核心场景，明确12项采集指标，累计支撑1000+km有效数据采集</li>
+                            <li data-lang="en"><strong>Data Collection:</strong> Designed AEB road test data collection for IM Motors L6, Nissan N7, and Aion RT; covered 6 core scenarios with 12 metrics; supported 1000+ km of effective data collection</li>
+                            <li data-lang="zh"><strong>测试执行：</strong>完成400+次场景验证，重点针对"鬼探头"、交叉路口冲突等corner case，精准定位近70个问题，推动20余次功能迭代优化</li>
+                            <li data-lang="en"><strong>Testing:</strong> Completed 400+ scenario validations focusing on corner cases; identified ~70 issues and drove 20+ iterations</li>
                         </ul>
                     </div>
                 </div>
             </section>
-
-            <!-- Skills -->
             <section id="skills" class="section">
-                <h2 class="section-title">
-                    <i class="fas fa-tools"></i>
-                    <span data-lang="zh">技能</span>
-                    <span data-lang="en">Skills</span>
-                </h2>
+                <h2 class="section-title"><i class="fas fa-tools"></i><span data-lang="zh">技能</span><span data-lang="en">Skills</span></h2>
                 <div class="skills-grid">
-                    <div class="skill-item">
-                        <strong data-lang="zh">编程语言</strong><br>
-                        <strong data-lang="en">Programming</strong><br>
-                        <span data-lang="zh">Python, C++, CUDA</span>
-                        <span data-lang="en">Python, C++, CUDA</span>
-                    </div>
-                    <div class="skill-item">
-                        <strong data-lang="zh">深度学习框架</strong><br>
-                        <strong data-lang="en">DL Frameworks</strong><br>
-                        <span data-lang="zh">PyTorch, TensorFlow</span>
-                        <span data-lang="en">PyTorch, TensorFlow</span>
-                    </div>
-                    <div class="skill-item">
-                        <strong data-lang="zh">研究方向</strong><br>
-                        <strong data-lang="en">Research Areas</strong><br>
-                        <span data-lang="zh">3D视觉, 实例分割, 时序建模</span>
-                        <span data-lang="en">3D Vision, Instance Segmentation, Temporal Modeling</span>
-                    </div>
-                    <div class="skill-item">
-                        <strong data-lang="zh">语言能力</strong><br>
-                        <strong data-lang="en">Languages</strong><br>
-                        <span data-lang="zh">中文（母语）, 英语（CET-6: 530）</span>
-                        <span data-lang="en">Chinese (Native), English (CET-6: 530)</span>
-                    </div>
+                    <div class="skill-item"><strong data-lang="zh">编程语言</strong><br><strong data-lang="en">Programming</strong><br><span data-lang="zh">Python, C++, CUDA, JavaScript</span><span data-lang="en">Python, C++, CUDA, JavaScript</span></div>
+                    <div class="skill-item"><strong data-lang="zh">深度学习框架</strong><br><strong data-lang="en">DL Frameworks</strong><br><span data-lang="zh">PyTorch, TensorFlow</span><span data-lang="en">PyTorch, TensorFlow</span></div>
+                    <div class="skill-item"><strong data-lang="zh">研究方向</strong><br><strong data-lang="en">Research Areas</strong><br><span data-lang="zh">3D视觉, 实例分割, MLLM, 具身智能, 时序建模, 跨模态学习</span><span data-lang="en">3D Vision, Instance Segmentation, MLLM, Embodied AI, Temporal Modeling, Cross-modal Learning</span></div>
+                    <div class="skill-item"><strong data-lang="zh">工具</strong><br><strong data-lang="en">Tools</strong><br><span data-lang="zh">SAM, CLIP, Open3D, ROS</span><span data-lang="en">SAM, CLIP, Open3D, ROS</span></div>
+                    <div class="skill-item"><strong data-lang="zh">语言能力</strong><br><strong data-lang="en">Languages</strong><br><span data-lang="zh">中文（母语）, 英语（CET-6: 530）</span><span data-lang="en">Chinese (Native), English (CET-6: 530)</span></div>
                 </div>
             </section>
         </main>
     </div>
-
-    <!-- Footer -->
     <footer style="text-align: center; padding: 30px; color: #666; background: #fff; margin-top: 40px;">
-        <p>© 2025 <span data-lang="zh">蔡子健</span><span data-lang="en">Zijian Cai</span>. All Rights Reserved.</p>
-        <p style="margin-top: 10px; font-size: 0.9em;">
-            <span data-lang="zh">基于</span><span data-lang="en">Based on</span> <a href="https://alberttan404.github.io/" target="_blank" style="color: #0066cc;">AcademicPages</a> <span data-lang="zh">模板</span><span data-lang="en">template</span>
-        </p>
+        <p>&copy; 2025 <span data-lang="zh">蔡子健</span><span data-lang="en">Zijian Cai</span>. All Rights Reserved.</p>
+        <p style="margin-top: 10px; font-size: 0.9em;"><span data-lang="zh">基于</span><span data-lang="en">Based on</span> <a href="https://alberttan404.github.io/" target="_blank" style="color: #0066cc;">AcademicPages</a> <span data-lang="zh">模板</span><span data-lang="en">template</span></p>
     </footer>
-
-    <!-- Language Toggle Script -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <script>
         function toggleLanguage() {
-            const body = document.body;
-            if (body.classList.contains('lang-en')) {
-                body.classList.remove('lang-en');
-                localStorage.setItem('lang', 'zh');
-            } else {
-                body.classList.add('lang-en');
-                localStorage.setItem('lang', 'en');
-            }
+            var body = document.body;
+            if (body.classList.contains('lang-en')) { body.classList.remove('lang-en'); localStorage.setItem('lang', 'zh'); }
+            else { body.classList.add('lang-en'); localStorage.setItem('lang', 'en'); }
         }
-
-        // Remember user's language preference
-        document.addEventListener('DOMContentLoaded', function() {
-            const savedLang = localStorage.getItem('lang');
-            if (savedLang === 'en') {
-                document.body.classList.add('lang-en');
-            }
-        });
-
-        // Resume Edit Functions
-        function openEditor() {
-            document.getElementById('editModal').style.display = 'flex';
-        }
-
-        function closeEditor() {
-            document.getElementById('editModal').style.display = 'none';
-        }
-
-        function saveResume() {
-            // Save to localStorage
-            const resumeData = {
-                name: document.getElementById('editName').value,
-                title: document.getElementById('editTitle').value,
-                bio: document.getElementById('editBio').value,
-                email: document.getElementById('editEmail').value,
-                phone: document.getElementById('editPhone').value,
-                about: document.getElementById('editAbout').value,
-                research: document.getElementById('editResearch').value
-            };
-            localStorage.setItem('resumeData', JSON.stringify(resumeData));
-            
-            // Update display
-            document.querySelector('.profile-name').innerHTML = 
-                `<span data-lang="zh">${resumeData.name}</span><span data-lang="en">${resumeData.name}</span>`;
-            document.querySelector('.profile-title').innerHTML = 
-                `<span data-lang="zh">${resumeData.title}</span><span data-lang="en">${resumeData.title}</span>`;
-            document.querySelector('.profile-bio').innerHTML = 
-                `<span data-lang="zh">${resumeData.bio}</span><span data-lang="en">${resumeData.bio}</span>`;
-            
-            // Update contact info
-            const profileInfo = document.querySelector('.profile-info');
-            profileInfo.innerHTML = `
-                <li><i class="fas fa-map-marker-alt"></i><span data-lang="zh">安徽合肥</span><span data-lang="en">Hefei, China</span></li>
-                <li><i class="fas fa-envelope"></i><a href="mailto:${resumeData.email}">${resumeData.email}</a></li>
-                <li><i class="fas fa-phone"></i><a href="tel:${resumeData.phone}">${resumeData.phone}</a></li>
-                <li><i class="fab fa-github"></i><a href="https://github.com/Chase-Arthur" target="_blank">GitHub</a></li>
-            `;
-            
-            // Update about section
-            const aboutText = document.querySelector('.about-text');
-            aboutText.innerHTML = `
-                <p data-lang="zh">${resumeData.about}</p>
-                <p data-lang="en">${resumeData.about}</p>
-                <div class="highlight-box">
-                    <p data-lang="zh"><strong>研究方向：</strong>${resumeData.research}</p>
-                    <p data-lang="en"><strong>Research Interests:</strong> ${resumeData.research}</p>
-                </div>
-            `;
-            
-            closeEditor();
-            alert('简历已保存！');
-        }
+        document.addEventListener('DOMContentLoaded', function() { if (localStorage.getItem('lang') === 'en') document.body.classList.add('lang-en'); });
 
         function exportPDF() {
-            const element = document.querySelector('.main-content');
-            const opt = {
-                margin: 10,
-                filename: 'Zijian_Cai_Resume.pdf',
-                image: { type: 'jpeg', quality: 0.98 },
-                html2canvas: { scale: 2 },
-                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+            var isEn = document.body.classList.contains('lang-en');
+            var lang = isEn ? 'en' : 'zh';
+            var content = {
+                zh: {
+                    name: '蔡子健', nameEn: 'Zijian Cai',
+                    title: '中国科学技术大学 · 自动化系 · 硕士研究生',
+                    bio: '多模态大模型 · 3D感知 · 具身智能',
+                    contact: [
+                        { icon: '📧', text: 'zjcai@mail.ustc.edu.cn' },
+                        { icon: '📧', text: '1084734352@qq.com' },
+                        { icon: '📱', text: '19862855610' },
+                        { icon: '🏠', text: '安徽合肥' },
+                        { icon: '💻', text: 'github.com/Chase-Arthur' }
+                    ],
+                    about: '我是蔡子健，目前是中国科学技术大学自动化系的硕士研究生，研究方向主要聚焦于多模态大模型（MLLM）和具身智能。曾在蔚来汽车从事MLLM算法研发，参与图像检测与视频理解能力的提升工作。本科毕业于中国石油大学（华东）计算机科学与技术专业，以专业排名 4/118 的优异成绩推免至中科大。在学术研究方面，已在 NeurIPS、ICASSP 等顶级会议发表论文。',
+                    research: '多模态大模型（MLLM）、3D实例分割、在线3D感知、具身智能、时序建模',
+                    sections: { education: '教育经历', experience: '实习经历', publications: '论文发表', skills: '技能', honors: '荣誉奖项' }
+                },
+                en: {
+                    name: 'Zijian Cai', nameEn: 'Zijian Cai',
+                    title: "USTC · Dept. of Automation · Master's Student",
+                    bio: 'MLLM · 3D Perception · Embodied AI',
+                    contact: [
+                        { icon: '📧', text: 'zjcai@mail.ustc.edu.cn' },
+                        { icon: '📧', text: '1084734352@qq.com' },
+                        { icon: '📱', text: '19862855610' },
+                        { icon: '🏠', text: 'Hefei, China' },
+                        { icon: '💻', text: 'github.com/Chase-Arthur' }
+                    ],
+                    about: "I'm Zijian Cai, currently a Master's student at USTC. My research focuses on MLLM and Embodied AI. I worked at NIO on MLLM algorithm development. I received my Bachelor's from China University of Petroleum (East China), ranking 4/118. Published at NeurIPS and ICASSP.",
+                    research: 'MLLM, 3D Instance Segmentation, Online 3D Perception, Embodied AI, Temporal Modeling',
+                    sections: { education: 'Education', experience: 'Internship Experience', publications: 'Publications', skills: 'Skills', honors: 'Honors & Awards' }
+                }
             };
-            html2pdf().set(opt).from(element).save();
+            var c = content[lang];
+            var today = new Date().toISOString().split('T')[0];
+
+            var educationItems = lang === 'zh' ? [
+                { date: '2024.09 - 至今', school: '中国科学技术大学', degree: '电子信息科学与技术（推免）· 硕士 · 自动化系', note: '985工程 · 安徽合肥 · 预计2027年6月毕业 · 排名47/160（前30%） · 学业一等奖学金' },
+                { date: '2020.09 - 2024.06', school: '中国石油大学（华东）', degree: '计算机科学与技术 · 本科 · 计算机系', note: '211工程 · 山东青岛 · GPA: 3.5/4.0 · 专业排名: 4/118 · 推免至中科大' }
+            ] : [
+                { date: '2024.09 - Present', school: 'University of Science and Technology of China (USTC)', degree: "Electronic Information Science & Technology · Master · Dept. of Automation", note: '985 Project · Hefei, China · Expected Graduation: June 2027 · Ranking: 47/160 (Top 30%)' },
+                { date: '2020.09 - 2024.06', school: 'China University of Petroleum (East China)', degree: 'Computer Science · Bachelor · Dept. of Computer Science', note: '211 Project · Qingdao, China · GPA: 3.5/4.0 · Ranking: 4/118 · Recommended to USTC' }
+            ];
+
+            var experienceItems = lang === 'zh' ? [
+                { date: '2025.11 - 2026.03', company: 'NIO 蔚来', role: '多模态大模型算法实习生 · 蔚来座舱', bullets: ['设计基于Visual Reference Token的MLLM架构，AP50从40.6提升至45.9，已部署于"Cedar雪松1.4.0"版本，覆盖蔚来新ES6、新EC6等4款量产车型', '通过GRPO强化学习微调自有MLLM，行为识别准确率从64%提升至73%；构建因果驱动的视频异常数据集'] },
+                { date: '2025.06 - 2025.09', company: '联想集团 Lenovo', role: '3D算法实习生', bullets: ['开发基于深度相机的点云感知模块，实现笔记本电脑多姿态高精度轮廓提取', '设计Top-K簇合并策略，感知成功率从70%提升至95%', '为联想25款小新、拯救者、ThinkPad等系列产品提供测试保障'] },
+                { date: '2024.09 - 2024.12', company: 'Momenta', role: '路测实习生 · AEB', bullets: ['完成上汽智己L6、日产N7、埃安RT等车型AEB功能道路数据采集方案设计，覆盖6类核心场景，累计支撑1000+km有效数据采集', '完成400+次场景验证，精准定位近70个问题，推动20余次功能迭代优化'] }
+            ] : [
+                { date: '2025.11 - 2026.03', company: 'NIO', role: 'Multimodal LLM Algorithm Intern · NIO Cockpit', bullets: ['Designed Visual Reference Token-based MLLM architecture; improved AP50 from 40.6 to 45.9; deployed in Cedar 1.4.0', 'Fine-tuned MLLM via GRPO RL; improved action recognition accuracy from 64% to 73%'] },
+                { date: '2025.06 - 2025.09', company: 'Lenovo Group', role: '3D Algorithm Intern', bullets: ['Developed depth camera-based point cloud perception module for multi-pose laptop contour extraction', 'Designed Top-K cluster merging strategy; improved perception success rate from 70% to 95%', 'Provided testing support for 25 Lenovo product lines'] },
+                { date: '2024.09 - 2024.12', company: 'Momenta', role: 'Road Test Intern · AEB', bullets: ['Designed AEB road test data collection for multiple car models; covered 6 scenarios; supported 1000+ km', 'Completed 400+ scenario validations; identified ~70 issues; drove 20+ iterations'] }
+            ];
+
+            var publicationItems = lang === 'zh' ? [
+                { venue: 'NeurIPS 2026  ✓ Accepted', title: 'Online Segment Any 3D Thing as Instance Tracking', authors: '第二作者 · 蔡子健', note: '将在线3D分割重新定义为实例跟踪问题，引入空间一致性学习，AP提升2.8%。' },
+                { venue: 'ICASSP 2026  ✓ Accepted', title: 'SEFO: Semantic-Enhanced Fusion for Online 3D Instance Segmentation', authors: '第一作者 · 蔡子健', note: '提出语义增强层次融合框架，跨模态类别对齐使ScanNet AP提升1.4%。' }
+            ] : [
+                { venue: 'NeurIPS 2026  ✓ Accepted', title: 'Online Segment Any 3D Thing as Instance Tracking', authors: 'Second Author · Zijian Cai', note: 'Reformulated online 3D segmentation as instance tracking; 2.8% AP improvement.' },
+                { venue: 'ICASSP 2026  ✓ Accepted', title: 'SEFO: Semantic-Enhanced Fusion for Online 3D Instance Segmentation', authors: 'First Author · Zijian Cai', note: 'Semantic-enhanced hierarchical fusion; 1.4% AP improvement on ScanNet.' }
+            ];
+
+            var skillItems = lang === 'zh' ? [
+                { cat: '编程语言', items: 'Python, C++, CUDA, JavaScript' },
+                { cat: '深度学习框架', items: 'PyTorch, TensorFlow' },
+                { cat: '研究方向', items: '3D视觉, 实例分割, MLLM, 具身智能, 时序建模, 跨模态学习' },
+                { cat: '工具', items: 'SAM, CLIP, Open3D, ROS' },
+                { cat: '语言能力', items: '中文（母语）, 英语（CET-6: 530）' }
+            ] : [
+                { cat: 'Programming', items: 'Python, C++, CUDA, JavaScript' },
+                { cat: 'DL Frameworks', items: 'PyTorch, TensorFlow' },
+                { cat: 'Research Areas', items: '3D Vision, Instance Segmentation, MLLM, Embodied AI, Temporal Modeling, Cross-modal Learning' },
+                { cat: 'Tools', items: 'SAM, CLIP, Open3D, ROS' },
+                { cat: 'Languages', items: 'Chinese (Native), English (CET-6: 530)' }
+            ];
+
+            var honorItems = lang === 'zh' ? [
+                { date: '2024', text: '创新创业卓越之星奖学金（全校本硕博20人）' },
+                { date: '2024', text: '中国科学技术大学 学业一等奖学金' },
+                { date: '2024', text: '国家励志奖学金、荣誉学士学位' },
+                { date: '2023', text: '中国大学生计算机设计大赛 国家一等奖' },
+                { date: '2023', text: '中国高校计算机大赛 国家三等奖' },
+                { date: '2023', text: '美国大学生数学建模竞赛 特等奖提名（F奖，Top 0.2%）' }
+            ] : [
+                { date: '2024', text: 'Innovation & Entrepreneurship Star Scholarship (Top 20)' },
+                { date: '2024', text: 'USTC Academic Excellence Scholarship (First Prize)' },
+                { date: '2024', text: 'National Endeavor Scholarship, Honorary Bachelor Degree' },
+                { date: '2023', text: 'Chinese Univ. Computer Design Competition - National First Prize' },
+                { date: '2023', text: 'China Collegiate Computing Contest - National Third Prize' },
+                { date: '2023', text: 'MCM/ICM - Finalist Award (F Prize, Top 0.2%)' }
+            ];
+
+            var contactHtml = c.contact.map(function(ci) { return '<span style="margin-right:18px;font-size:10.5px;">' + ci.icon + ' ' + ci.text + '</span>'; }).join('');
+            var eduHtml = educationItems.map(function(e) { return '<div style="margin-bottom:12px;"><div style="display:flex;justify-content:space-between;align-items:baseline;"><strong style="font-size:11.5px;">' + e.school + '</strong><span style="color:#0066cc;font-size:10.5px;font-weight:600;">' + e.date + '</span></div><div style="color:#444;font-size:10.5px;">' + e.degree + '</div><div style="color:#666;font-size:10px;font-style:italic;">' + e.note + '</div></div>'; }).join('');
+            var expHtml = experienceItems.map(function(e) { return '<div style="margin-bottom:14px;"><div style="display:flex;justify-content:space-between;align-items:baseline;"><strong style="font-size:11.5px;">' + e.company + '</strong><span style="color:#0066cc;font-size:10.5px;font-weight:600;">' + e.date + '</span></div><div style="color:#444;font-size:10.5px;margin-bottom:4px;">' + e.role + '</div><ul style="margin:0;padding-left:16px;">' + e.bullets.map(function(b) { return '<li style="font-size:10px;color:#444;margin-bottom:3px;line-height:1.5;">' + b + '</li>'; }).join('') + '</ul></div>'; }).join('');
+            var pubHtml = publicationItems.map(function(p) { return '<div style="margin-bottom:12px;"><div style="font-size:10.5px;font-weight:700;color:#0066cc;margin-bottom:3px;">' + p.venue + '</div><div style="font-size:11px;font-weight:600;margin-bottom:3px;">' + p.title + '</div><div style="font-size:10px;color:#666;margin-bottom:3px;">' + p.authors + '</div><div style="font-size:9.5px;color:#555;background:#f8f9fa;padding:6px 8px;border-radius:4px;">' + p.note + '</div></div>'; }).join('');
+            var skillsHtml = '<div style="display:flex;flex-wrap:wrap;gap:8px;">' + skillItems.map(function(s) { return '<div style="flex:1;min-width:200px;background:#f8f9fa;padding:8px 10px;border-radius:4px;border-left:3px solid #0066cc;"><strong style="font-size:10.5px;color:#0066cc;">' + s.cat + '</strong><br><span style="font-size:10px;color:#444;">' + s.items + '</span></div>'; }).join('') + '</div>';
+            var honorsHtml = honorItems.map(function(h) { return '<div style="display:flex;gap:10px;margin-bottom:6px;"><span style="min-width:40px;color:#0066cc;font-weight:600;font-size:10.5px;">' + h.date + '</span><span style="font-size:10.5px;color:#333;">' + h.text + '</span></div>'; }).join('');
+            var sd = '<div style="border:none;border-top:1px solid #e0e0e0;margin:14px 0;"></div>';
+            var al = lang === 'zh' ? '个人简介' : 'About Me';
+            var rl = lang === 'zh' ? '研究方向：' : 'Research Interests: ';
+            var gl = lang === 'zh' ? '生成日期' : 'Generated';
+
+            var pdfHtml = '<div id="pdf-resume" style="font-family:Noto Sans SC,-apple-system,sans-serif;color:#222;line-height:1.6;width:210mm;padding:15mm 15mm 10mm 15mm;background:#fff;font-size:11px;">' +
+                '<div style="text-align:center;margin-bottom:8px;"><h1 style="font-size:22px;font-weight:700;margin:0 0 4px 0;color:#111;">' + c.name + '</h1><div style="font-size:12px;color:#0066cc;font-weight:500;margin-bottom:6px;">' + c.title + '</div><div style="font-size:10.5px;color:#555;margin-bottom:4px;">' + c.bio + '</div><div style="margin-top:6px;">' + contactHtml + '</div></div>' + sd +
+                '<div style="margin-bottom:4px;"><h2 style="font-size:13px;font-weight:700;color:#0066cc;border-bottom:1.5px solid #0066cc;padding-bottom:4px;margin-bottom:8px;">' + al + '</h2><p style="font-size:10.5px;color:#333;line-height:1.6;margin-bottom:4px;">' + c.about + '</p><p style="font-size:10.5px;color:#333;"><strong>' + rl + '</strong>' + c.research + '</p></div>' + sd +
+                '<div style="margin-bottom:4px;"><h2 style="font-size:13px;font-weight:700;color:#0066cc;border-bottom:1.5px solid #0066cc;padding-bottom:4px;margin-bottom:8px;">' + c.sections.education + '</h2>' + eduHtml + '</div>' + sd +
+                '<div style="margin-bottom:4px;"><h2 style="font-size:13px;font-weight:700;color:#0066cc;border-bottom:1.5px solid #0066cc;padding-bottom:4px;margin-bottom:8px;">' + c.sections.experience + '</h2>' + expHtml + '</div>' + sd +
+                '<div style="margin-bottom:4px;"><h2 style="font-size:13px;font-weight:700;color:#0066cc;border-bottom:1.5px solid #0066cc;padding-bottom:4px;margin-bottom:8px;">' + c.sections.publications + '</h2>' + pubHtml + '</div>' + sd +
+                '<div style="margin-bottom:4px;"><h2 style="font-size:13px;font-weight:700;color:#0066cc;border-bottom:1.5px solid #0066cc;padding-bottom:4px;margin-bottom:8px;">' + c.sections.skills + '</h2>' + skillsHtml + '</div>' + sd +
+                '<div style="margin-bottom:4px;"><h2 style="font-size:13px;font-weight:700;color:#0066cc;border-bottom:1.5px solid #0066cc;padding-bottom:4px;margin-bottom:8px;">' + c.sections.honors + '</h2>' + honorsHtml + '</div>' + sd +
+                '<div style="text-align:center;font-size:9px;color:#999;margin-top:8px;">' + gl + ': ' + today + ' · ' + c.nameEn + '</div></div>';
+
+            var container = document.createElement('div');
+            container.style.position = 'absolute';
+            container.style.left = '-9999px';
+            container.style.top = '0';
+            container.style.background = '#fff';
+            container.innerHTML = pdfHtml;
+            document.body.appendChild(container);
+            var filename = lang === 'zh' ? 'Zijian_Cai_Resume_CN.pdf' : 'Zijian_Cai_Resume_EN.pdf';
+            html2pdf().set({ margin: 0, filename: filename, image: { type: 'jpeg', quality: 0.98 }, html2canvas: { scale: 2, useCORS: true, letterRendering: true }, jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }, pagebreak: { mode: ['avoid-all', 'css', 'legacy'] } }).from(container.querySelector('#pdf-resume')).save().then(function() { document.body.removeChild(container); }).catch(function() { document.body.removeChild(container); });
         }
-
-        // Load saved data on page load
-        window.onload = function() {
-            const saved = localStorage.getItem('resumeData');
-            if (saved) {
-                // Data will be applied after DOM is ready
-            }
-        };
     </script>
-
-    <!-- Edit Modal -->
-    <div id="editModal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);z-index:1000;align-items:center;justify-content:center;">
-        <div style="background:#fff;border-radius:12px;padding:30px;max-width:600px;width:90%;max-height:80vh;overflow-y:auto;">
-            <h2 style="margin-bottom:20px;">编辑简历 / Edit Resume</h2>
-            <div style="display:grid;gap:15px;">
-                <label>姓名 / Name: <input type="text" id="editName" value="蔡子健" style="width:100%;padding:8px;margin-top:5px;"></label>
-                <label>职位 / Title: <input type="text" id="editTitle" value="中国科学技术大学 · 硕士研究生" style="width:100%;padding:8px;margin-top:5px;"></label>
-                <label>简介 / Bio: <input type="text" id="editBio" value="具身智能 · 3D感知 · 深度学习" style="width:100%;padding:8px;margin-top:5px;"></label>
-                <label>邮箱 / Email: <input type="email" id="editEmail" value="zjcai@mail.ustc.edu.cn" style="width:100%;padding:8px;margin-top:5px;"></label>
-                <label>电话 / Phone: <input type="tel" id="editPhone" value="19862855610" style="width:100%;padding:8px;margin-top:5px;"></label>
-                <label>关于我 / About: <textarea id="editAbout" rows="3" style="width:100%;padding:8px;margin-top:5px;">你好！我是蔡子健，目前是中国科学技术大学自动化系的硕士研究生，研究方向主要聚焦于具身智能、3D感知和深度学习。</textarea></label>
-                <label>研究方向 / Research: <input type="text" id="editResearch" value="3D实例分割、在线3D感知、时序建模、跨模态学习" style="width:100%;padding:8px;margin-top:5px;"></label>
-            </div>
-            <div style="margin-top:20px;display:flex;gap:10px;justify-content:flex-end;">
-                <button onclick="closeEditor()" style="padding:10px 20px;cursor:pointer;">取消 / Cancel</button>
-                <button onclick="saveResume()" style="padding:10px 20px;background:#0066cc;color:#fff;border:none;border-radius:6px;cursor:pointer;">保存 / Save</button>
-            </div>
-        </div>
-    </div>
 </body>
 </html>
